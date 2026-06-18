@@ -28,15 +28,15 @@ Esto reabre la decisión de paleta cerrada en `CLAUDE.md` y en `moodboard.md §2
 - **Jerarquía de fondos.** Header/footer dejan de ser Lino claro y pasan a azul-gris profundo. El cuerpo intercala madera + fieltro + blanco. El "fondo lino dominante" deja de ser regla.
 - **Color de acento.** Cielo Sur azul claro queda archivado (igual que el menta antes). El nuevo acento "pop" es Cobre/Terracota `#BB6A4B`, usado con extrema parquedad.
 - **Texto sobre oscuro.** Pasa de Lino `#F4F4F9` a Blanco Puro `#FFFFFF`.
-- **Color de marca oscuro.** De Petróleo `#2F4550` a Profundo `#2D394C` (cambio mínimo, casi idéntico — el roleo es lo que cambia).
+- **Color de marca oscuro.** De Petróleo `#2F4550` a Profundo `#0D4080` (cambio mínimo, casi idéntico — el roleo es lo que cambia).
 - **Negro físico.** De `#000000` Tinta a `#1D1D1D` Antracita — se suaviza para interfaz; el negro puro queda reservado al sello físico.
 
 ## 3. Paleta v0.3 — definitiva
 
 | HEX | Nombre interno | Rol | Notas |
 |---|---|---|---|
-| `#2D394C` | **Profundo** | Header, footer, secciones de anclaje, texto sobre claro | Reemplaza a Petróleo. Calza con la imagen de Felipe (pared de fondo). |
-| `#A17351` | **Nogal** | Cuerpo principal — secciones destacadas (hero, casos, portfolio) | Madera caliente. Texto blanco sobre nogal. |
+| `#0D4080` | **Profundo** | Header, footer, secciones de anclaje, texto sobre claro | Reemplaza a Petróleo. Calza con la imagen de Felipe (pared de fondo). |
+| `#703D24` | **Nogal** | Cuerpo principal — secciones destacadas (hero, casos, portfolio) | Madera caliente. Texto blanco sobre nogal. |
 | `#8F5F3E` | **Roble** | Variante madera oscura, hover de Nogal, bordes/lineas en piezas madera | No usar como fondo extenso (cansa); pareja del Nogal. |
 | `#7C888D` | **Fieltro** | Secciones de contenido detallado, "cómo funciona", FAQ | Gris medio jaspeado. Texto Antracita sobre Fieltro. |
 | `#FFFFFF` | **Papel** | Fondo base claro, texto sobre Profundo/Nogal/Roble | Blanco puro, no off-white. |
@@ -46,8 +46,8 @@ Esto reabre la decisión de paleta cerrada en `CLAUDE.md` y en `moodboard.md §2
 ### Proporciones sugeridas
 
 - ~30% Papel (#FFFFFF) — fondo base de cuerpo y áreas blancas.
-- ~25% Profundo (#2D394C) — header, footer, secciones de anclaje.
-- ~20% Nogal (#A17351) — secciones destacadas, cards de producto principales.
+- ~25% Profundo (#0D4080) — header, footer, secciones de anclaje.
+- ~20% Nogal (#703D24) — secciones destacadas, cards de producto principales.
 - ~15% Fieltro (#7C888D) — secciones de detalle, FAQ, condiciones.
 - ~7% Antracita (#1D1D1D) — texto secundario, bordes.
 - ~3% Cobre (#BB6A4B) — CTA pop único.
@@ -60,11 +60,11 @@ Decisión: **renombrar** las variables, no aliasar las viejas. Un `--color-cielo
 | Variable actual | Nueva variable | Valor actual → nuevo |
 |---|---|---|
 | `--color-lino` | `--color-papel` | `#F4F4F9` → `#FFFFFF` |
-| `--color-petroleo` | `--color-profundo` | `#2F4550` → `#2D394C` |
+| `--color-petroleo` | `--color-profundo` | `#2F4550` → `#0D4080` |
 | `--color-niebla` | `--color-fieltro` | `#586F7C` → `#7C888D` |
 | `--color-cielo-sur` | *(eliminado)* | el rol de acento lo absorbe Nogal o Cobre según contexto |
 | `--color-tinta` | `--color-antracita` | `#000000` → `#1D1D1D` |
-| — | `--color-nogal` (nueva) | `#A17351` |
+| — | `--color-nogal` (nueva) | `#703D24` |
 | — | `--color-roble` (nueva) | `#8F5F3E` |
 | — | `--color-cobre` (nueva) | `#BB6A4B` |
 | `--color-petroleo-08/16/64` | `--color-profundo-08/16/64` | mismo alpha, nuevo HEX base |
@@ -152,7 +152,7 @@ Reemplazar línea "Paleta:" en sección "Decisiones cerradas" con paleta v0.3. C
 ## 9. Riesgos e hipótesis abiertas
 
 - ⚠ El cliente puede preferir que el cuerpo principal NO use Nogal extenso (madera como fondo grande puede cansar). Producir primera versión y validar con Felipe antes de empujar a otras páginas no-críticas.
-- ⚠ El acento Cobre `#BB6A4B` está muy cerca del Nogal `#A17351` en hue — verificar que se distingan en pantalla. Si no, considerar Cobre más saturado.
+- ⚠ El acento Cobre `#BB6A4B` está muy cerca del Nogal `#703D24` en hue — verificar que se distingan en pantalla. Si no, considerar Cobre más saturado.
 - ⚠ La paleta v0.3 tiene 7 colores nominales vs los 5 v0.2. Más expresividad, pero más riesgo de inconsistencia. Las reglas de proporción en §3 son la guarda.
 - ⚠ El landing B2B `/empresas` ya tiene screenshots aprobados en v0.2. Estos quedan obsoletos — re-screenshot después de aplicar v0.3.
 - ⚠ Decisión separada: si Felipe quiere que se mantenga **alguna** sección clara extensa en la home (estilo Grovemade), confirmarlo. Default propuesto: hero claro, intercalado con secciones Nogal/Fieltro/Profundo.

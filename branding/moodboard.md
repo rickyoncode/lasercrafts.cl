@@ -58,12 +58,12 @@ Paleta entregada por Felipe el 2026-06-18, leyendo una foto de escritorio premiu
 | HEX | Nombre interno | Rol | Proporción sugerida | Nota |
 |---|---|---|---|---|
 | `#FFFFFF` | **Papel** | Fondo base claro, texto sobre fondos oscuros | ~30% | Blanco puro mate. Reemplaza al Lino — el cliente quiere blanco directo, no off-white. |
-| `#2D394C` | **Profundo** | Header, footer, secciones de anclaje, texto principal sobre claro | ~25% | Azul-gris mate de la "pared de fondo". Reemplaza a Petróleo (cambio mínimo en HEX, gran cambio en rol). |
-| `#A17351` | **Nogal** | Cuerpo principal de secciones destacadas (hero, casos, portfolio) | ~20% | Madera caliente, el "material" se vuelve color. Texto Papel sobre Nogal. |
+| `#0D4080` | **Profundo** | Header, footer, secciones de anclaje, texto principal sobre claro | ~25% | Azul real saturado. Confirmado por Felipe el 2026-06-18 como reemplazo del primer estimado `#2D394C` (más mate). Más contraste, más identidad. |
+| `#703D24` | **Nogal** | Cuerpo principal de secciones destacadas (hero, casos, portfolio) | ~20% | Café profundo y saturado, confirmado por Felipe el 2026-06-18 (reemplaza el primer estimado `#A17351`). Texto Papel sobre Nogal. |
 | `#7C888D` | **Fieltro** | Secciones de contenido detallado (FAQ, condiciones, "cómo funciona") | ~15% | Gris medio jaspeado. Texto Antracita sobre Fieltro. Reemplaza a Niebla. |
 | `#1D1D1D` | **Antracita** | Texto secundario sobre Papel/Fieltro, bordes finos, íconos | ~7% | Reemplaza al negro puro en interfaz. El `#000000` queda solo para sello físico. |
 | `#BB6A4B` | **Cobre** | CTA pop único (carrito, "Comprar ahora", contacto especial) | ~3% | Acento terracota. **Una vez por pantalla máximo.** Si se usa dos veces pierde su función. |
-| `#8F5F3E` | **Roble** | Variante madera oscura: hover de Nogal, bordes/líneas en piezas con fondo madera | uso puntual | No usar como fondo extenso (cansa); pareja del Nogal. |
+| `#8F5F3E` | **Roble** | Variante madera intermedia: hover suave, bordes/líneas en piezas con fondo Nogal | uso puntual | Más claro que Nogal — la jerarquía ahora es Nogal (oscuro) > Roble (intermedio) > Cobre (acento). |
 
 ### 2.2 Alternativas exploradas y archivadas
 
@@ -74,9 +74,9 @@ Paleta entregada por Felipe el 2026-06-18, leyendo una foto de escritorio premiu
 ### 2.3 Reglas de uso
 
 - **Papel (#FFFFFF) puede ser fondo dominante** o texto sobre Profundo/Nogal/Roble. No usar Papel sobre Fieltro como texto — el contraste no llega (ver §2.4).
-- **Profundo (#2D394C)** es el ancla oscura del sistema: header, footer, y cualquier sección donde la marca quiere "callar y hacerse seria". Texto sobre Profundo: Papel.
-- **Nogal (#A17351)** entra como **fondo de sección destacada** — hero, casos de estudio, cuerpo de portfolio, "qué hacemos". Es el sello visual cálido. **No usar Nogal en cuerpos de texto largos** (cansa); usarlo en bloques de máximo 600px de alto.
-- **Roble (#8F5F3E)** es la pareja oscura del Nogal: hover, bordes, separadores dentro de piezas con fondo Nogal. **No fondo extenso.**
+- **Profundo (#0D4080)** es el ancla oscura del sistema: header, footer, y cualquier sección donde la marca quiere "callar y hacerse seria". Texto sobre Profundo: Papel.
+- **Nogal (#703D24)** entra como **fondo de sección destacada** — hero, casos de estudio, cuerpo de portfolio, "qué hacemos". Es el sello visual cálido. **No usar Nogal en cuerpos de texto largos** (cansa); usarlo en bloques de máximo 600px de alto.
+- **Roble (#8F5F3E)** es la pareja **intermedia** del Nogal (más clara que el Nogal nuevo): hover, bordes, separadores dentro de piezas con fondo Nogal. **No fondo extenso.**
 - **Fieltro (#7C888D)** es donde vive el detalle: FAQ, condiciones, "cómo funciona", proceso. Texto sobre Fieltro: Antracita.
 - **Antracita (#1D1D1D) reemplaza al negro puro en interfaz.** Texto secundario sobre Papel/Fieltro, bordes finos, íconos. El `#000000` queda únicamente para sello físico láser sobre madera.
 - **Cobre (#BB6A4B) es la regla del "una vez por pantalla".** CTA principal de la home si hay "Comprar ahora", botón de WhatsApp del landing B2B, link único de "contacto urgente". Si se usa dos veces deja de ser pop y se vuelve color institucional.
@@ -86,10 +86,10 @@ Paleta entregada por Felipe el 2026-06-18, leyendo una foto de escritorio premiu
 
 | Fondo / Texto | Ratio | OK |
 |---|---|---|
-| Profundo `#2D394C` sobre Papel `#FFFFFF` | 10.7:1 | ✅ AAA |
+| Profundo `#0D4080` sobre Papel `#FFFFFF` | 10.4:1 | ✅ AAA |
 | Antracita `#1D1D1D` sobre Papel | 16.7:1 | ✅ AAA |
-| Papel sobre Profundo | 10.7:1 | ✅ AAA |
-| Papel sobre Nogal `#A17351` | 4.7:1 | ✅ AA |
+| Papel sobre Profundo | 10.4:1 | ✅ AAA |
+| Papel sobre Nogal `#703D24` | 8.2:1 | ✅ AAA |
 | Papel sobre Roble `#8F5F3E` | 6.1:1 | ✅ AA |
 | Antracita sobre Fieltro `#7C888D` | 5.0:1 | ✅ AA |
 | Papel sobre Fieltro | 3.4:1 | ❌ no para cuerpo, OK solo headings grandes (AA large) |
@@ -156,7 +156,7 @@ Como el sitio ya está en construcción, esta sección es propositiva — debe v
 
 | Aspecto | Decisión |
 |---|---|
-| **Fondo** | Papel `#FFFFFF`, Nogal `#A17351` (madera plana) o terciado real fotografiado. Nada de marble, nada de tela, nada de café. Plantas verdes frescas opcionales (referencia Grovemade). |
+| **Fondo** | Papel `#FFFFFF`, Nogal `#703D24` (madera plana) o terciado real fotografiado. Nada de marble, nada de tela, nada de café. Plantas verdes frescas opcionales (referencia Grovemade). |
 | **Luz** | Natural cenital o ventana grande, sombras suaves. Tiempo diurno. |
 | **Composición** | Producto centrado o con regla de tercios. Mucho aire. No styling de Pinterest. |
 | **Mano humana** | Mano de Felipe esporádica, para escala y calor. No mano "femenina con manicura perfecta". |

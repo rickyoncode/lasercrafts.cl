@@ -29,7 +29,7 @@ web/
 
 ## Decisiones cerradas (no re-litigar sin razón)
 
-- **Paleta (v0.3, dirección Grovemade — 2026-06-18):** `#FFFFFF` Papel, `#2D394C` Profundo, `#A17351` Nogal, `#8F5F3E` Roble, `#7C888D` Fieltro, `#1D1D1D` Antracita, `#BB6A4B` Cobre. **El negro puro `#000000` queda reservado al sello físico láser; en interfaz se usa Antracita.** Detalle de roles, proporciones y accesibilidad en `branding/moodboard.md §2`. Plan de transición v0.2 → v0.3 en `.claude/docs/rebrand-paleta-grovemade/plan.md`. Versiones previas archivadas: v0.1 menta `#B8DBD9` y v0.2 Cielo Sur `#B9CDDA`.
+- **Paleta (v0.3, dirección Grovemade — 2026-06-18):** `#FFFFFF` Papel, `#0D4080` Profundo, `#703D24` Nogal, `#8F5F3E` Roble, `#7C888D` Fieltro, `#1D1D1D` Antracita, `#BB6A4B` Cobre. **El negro puro `#000000` queda reservado al sello físico láser; en interfaz se usa Antracita.** Detalle de roles, proporciones y accesibilidad en `branding/moodboard.md §2`. Plan de transición v0.2 → v0.3 en `.claude/docs/rebrand-paleta-grovemade/plan.md`. Versiones previas archivadas: v0.1 menta `#B8DBD9` y v0.2 Cielo Sur `#B9CDDA`.
 - **Logo:** mascota mono + wordmark "LÁSERCRAFTS" + tagline **"¿Y SI MEJOR LO HACEMOS BIEN?"**. No se rediseña, se sistematiza. El SVG entregado por Felipe usa `#ff0000` como placeholder de color — **ignorar el rojo**, el logo se aplica con `currentColor`.
 - **Naming / dominios:** marca registrada en INAPI. `lasercrafts.cl` (principal) y `lasercraft.cl` (defensivo) registrados a Borquez Solutions SpA. `lasercraftcl.com` es competencia de naming (no de producto) y no tiene precedencia.
 - **Materialidad:** solo **terciado**. Es decisión de identidad, no limitación.

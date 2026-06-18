@@ -3,8 +3,8 @@
 :root {
   /* Paleta v0.3 (Grovemade) — ver branding/moodboard.md §2 */
   --color-papel: #ffffff;
-  --color-profundo: #2d394c;
-  --color-nogal: #a17351;
+  --color-profundo: #0d4080;
+  --color-nogal: #703d24;
   --color-roble: #8f5f3e;
   --color-fieltro: #7c888d;
   --color-antracita: #1d1d1d;
@@ -12,14 +12,14 @@
   --color-sello: #000000; /* negro puro: reservado para sello físico */
 
   /* Derivadas (alphas) */
-  --color-profundo-08: rgba(45, 57, 76, 0.08);
-  --color-profundo-16: rgba(45, 57, 76, 0.16);
-  --color-profundo-64: rgba(45, 57, 76, 0.64);
+  --color-profundo-08: rgba(13, 64, 128, 0.08);
+  --color-profundo-16: rgba(13, 64, 128, 0.16);
+  --color-profundo-64: rgba(13, 64, 128, 0.64);
   --color-antracita-08: rgba(29, 29, 29, 0.08);
   --color-antracita-16: rgba(29, 29, 29, 0.16);
   --color-fieltro-50: rgba(124, 136, 141, 0.5);
-  --color-nogal-12: rgba(161, 115, 81, 0.12);
-  --color-nogal-24: rgba(161, 115, 81, 0.24);
+  --color-nogal-12: rgba(112, 61, 36, 0.12);
+  --color-nogal-24: rgba(112, 61, 36, 0.24);
 
   /* Tipografía */
   --font-display: "Archivo Narrow", "GT America Condensed", sans-serif;
