@@ -1,0 +1,142 @@
+---
+import { waLink } from "../../lib/whatsapp";
+
+interface Props {
+  enabled?: boolean;
+  eyebrow?: string;
+  title?: string;
+  subtitle?: string;
+  ctaPrimaryLabel?: string;
+  ctaPrimaryHref?: string;
+  ctaSecondaryLabel?: string;
+  ctaSecondaryHref?: string;
+  bgImage?: string;
+  bgAlt?: string;
+  align?: "left" | "right";
+  minHeight?: string;
+}
+
+const {
+  enabled = true,
+  eyebrow = "Taller chileno · Madera grabada",
+  title = "El regalo",
+  subtitle = "En terciado del sur, grabado a láser, despachado en días.",
+  ctaPrimaryLabel = "Ver catálogo",
+  ctaPrimaryHref = "/productos",
+  ctaSecondaryLabel = "Conversemos por WhatsApp",
+  ctaSecondaryHref = waLink({ kind: "home" }),
+  bgImage = "/img/hero/grovemade-desk-walnut.jpg",
+  bgAlt = "Setup de escritorio en madera nogal sobre fondo azul profundo.",
+  align = "right",
+  minHeight = "560px",
+} = Astro.props;
+
+if (!enabled) return null;
+---
+
+<section class:list={["hero-gm", `hero-gm--${align}`]} style={`--hero-gm-bg: url('${bgImage}'); --hero-gm-min: ${minHeight};`} aria-label={bgAlt}>
+  <div class="hero-gm-inner container">
+    <div class="hero-gm-copy">
+      {eyebrow && <span class="eyebrow eyebrow-light">{eyebrow}</span>}
+      <h1 class="hero-gm-title">{title}</h1>
+      {subtitle && <p class="hero-gm-subtitle">{subtitle}</p>}
+      <div class="hero-gm-actions">
+        <a href={ctaPrimaryHref} class="btn hero-gm-btn-primary">{ctaPrimaryLabel}</a>
+        {ctaSecondaryHref && (
+          <a href={ctaSecondaryHref} target="_blank" rel="noopener" class="btn hero-gm-btn-ghost" data-wa-context="hero-gm">
+            {ctaSecondaryLabel}
+          </a>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-gm {
+    background-image: var(--hero-gm-bg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: var(--hero-gm-min);
+    color: var(--color-papel);
+    display: flex;
+    align-items: center;
+    position: relative;
+  }
+  .hero-gm-inner {
+    width: 100%;
+    display: flex;
+    padding-top: var(--space-7);
+    padding-bottom: var(--space-7);
+  }
+  .hero-gm--right .hero-gm-inner { justify-content: flex-end; }
+  .hero-gm--left  .hero-gm-inner { justify-content: flex-start; }
+
+  .hero-gm-copy {
+    max-width: 32ch;
+    text-align: left;
+  }
+  .hero-gm--right .hero-gm-copy { text-align: right; }
+
+  .hero-gm .eyebrow-light {
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: var(--space-3);
+  }
+
+  .hero-gm-title {
+    font-family: var(--font-display);
+    font-size: var(--fs-hero);
+    color: var(--color-papel);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin: 0 0 var(--space-3);
+  }
+  .hero-gm-subtitle {
+    color: rgba(255, 255, 255, 0.86);
+    font-size: var(--fs-lead);
+    line-height: 1.4;
+    margin: 0 0 var(--space-5);
+  }
+  .hero-gm-actions {
+    display: flex;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+  }
+  .hero-gm--right .hero-gm-actions { justify-content: flex-end; }
+
+  .hero-gm-btn-primary {
+    background: var(--color-papel);
+    color: var(--color-profundo);
+    padding: 0.9rem 1.6rem;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid var(--color-papel);
+    letter-spacing: 0.02em;
+  }
+  .hero-gm-btn-primary:hover {
+    background: rgba(255, 255, 255, 0.92);
+  }
+  .hero-gm-btn-ghost {
+    background: transparent;
+    color: var(--color-papel);
+    padding: 0.9rem 1.6rem;
+    border-radius: var(--radius-pill);
+    font-weight: 600;
+    text-decoration: none;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.02em;
+  }
+  .hero-gm-btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  @media (max-width: 720px) {
+    .hero-gm { min-height: 440px; }
+    .hero-gm-inner { justify-content: flex-start !important; padding-top: var(--space-6); padding-bottom: var(--space-6); }
+    .hero-gm-copy { text-align: left !important; max-width: 28ch; }
+    .hero-gm-actions { justify-content: flex-start !important; }
+    .hero-gm-title { font-size: clamp(2rem, 9vw, 3rem); }
+  }
+</style>

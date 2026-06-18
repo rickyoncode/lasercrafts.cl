@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import HeroGrovemade from "../components/sections/HeroGrovemade.astro";
 import ProductCard from "../components/ProductCard.astro";
 import OcasionTile from "../components/OcasionTile.astro";
 import ClienteFelizCard from "../components/ClienteFelizCard.astro";
@@ -11,36 +12,45 @@ import { waLink } from "../lib/whatsapp";
 
 const top = products.slice(0, 6);
 const waCta = waLink({ kind: "home" });
+
+// --- Toggles de secciones (modular) ---
+// Flip a true/false para alternar el hero. Solo uno encendido a la vez.
+const SHOW_HERO_GROVEMADE = true;
+const SHOW_HERO_ORIGINAL = !SHOW_HERO_GROVEMADE;
 ---
 
 <BaseLayout
   title="LáserCrafts — Regalo personalizado en madera. Despacho a todo Chile."
   description="Taller chileno de regalo personalizado en terciado grabado a láser. Hecho a mano por Felipe, despacho a todo Chile, listo en días."
 >
-  <section class="hero">
-    <div class="container hero-grid">
-      <div class="hero-copy">
-        <span class="eyebrow">Regalo en madera · Taller en el sur de Chile</span>
-        <h1>¿Y si mejor lo hacemos bien?</h1>
-        <p class="lead">
-          Regalo personalizado en terciado grabado a láser. Hecho a mano por
-          Felipe, en una pieza a la vez. Despacho a todo Chile, listo en días.
-        </p>
-        <div class="hero-plazo">
-          <PlazoBadge plazoMax={5} />
+  <HeroGrovemade enabled={SHOW_HERO_GROVEMADE} />
+
+  {SHOW_HERO_ORIGINAL && (
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Regalo en madera · Taller en el sur de Chile</span>
+          <h1>¿Y si mejor lo hacemos bien?</h1>
+          <p class="lead">
+            Regalo personalizado en terciado grabado a láser. Hecho a mano por
+            Felipe, en una pieza a la vez. Despacho a todo Chile, listo en días.
+          </p>
+          <div class="hero-plazo">
+            <PlazoBadge plazoMax={5} />
+          </div>
+          <div class="hero-actions">
+            <a href="/productos" class="btn btn-primary btn-large">Ver productos</a>
+            <a href={waCta} target="_blank" rel="noopener" class="btn btn-ghost btn-large" data-wa-context="hero">
+              Conversemos por WhatsApp
+            </a>
+          </div>
         </div>
-        <div class="hero-actions">
-          <a href="/productos" class="btn btn-primary btn-large">Ver productos</a>
-          <a href={waCta} target="_blank" rel="noopener" class="btn btn-ghost btn-large" data-wa-context="hero">
-            Conversemos por WhatsApp
-          </a>
+        <div class="hero-img" aria-hidden="true">
+          <img src="/img/products/cofre.svg" alt="" />
         </div>
       </div>
-      <div class="hero-img" aria-hidden="true">
-        <img src="/img/products/cofre.svg" alt="" />
-      </div>
-    </div>
-  </section>
+    </section>
+  )}
 
   <section class="section">
     <div class="container">
