@@ -1,0 +1,120 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { waLink } from "../lib/whatsapp";
+const wa = waLink({ kind: "home" });
+
+const faq = [
+  {
+    q: "¿Cómo personalizo mi pedido?",
+    a: "En la página del producto eliges el texto que quieres grabar y la cantidad. Después haces clic en 'Pedir por WhatsApp' y te llega un mensaje precargado con esos datos. Antes de producir, te envío un boceto digital para que apruebes."
+  },
+  {
+    q: "¿Cuánto demora un pedido?",
+    a: "Depende del producto, pero la mayoría está lista entre 3 y 7 días hábiles de producción, más el plazo de despacho (entre 1 y 3 días según región). En cada producto se muestra el plazo estimado actualizado."
+  },
+  {
+    q: "¿Despachan a mi región?",
+    a: "Sí, despachamos a todo Chile vía Chilexpress, Starken, BlueExpress o Correos de Chile. El costo de despacho varía por región y se cotiza al cerrar el pedido por WhatsApp."
+  },
+  {
+    q: "¿Qué pasa si me arrepiento después de pedir?",
+    a: "Mientras no haya comenzado la producción puedes cancelar sin costo. Una vez iniciado el grabado, al tratarse de una pieza personalizada, no hay reembolso. Por eso siempre te enviamos boceto digital antes de empezar."
+  },
+  {
+    q: "¿Puedo cambiar el texto después de pedir?",
+    a: "Sí, mientras la pieza no esté grabada. Si tenemos boceto pendiente de tu aprobación, simplemente respondes con la corrección."
+  },
+  {
+    q: "¿Hacen volumen para empresas o matrimonios?",
+    a: "Sí, llevamos bastantes pedidos de matrimonios y emprendimientos locales. Para volúmenes mayores a 30 unidades o necesidades específicas, escríbenos directo por WhatsApp para cotizar."
+  },
+  {
+    q: "¿Cómo se paga?",
+    a: "Por transferencia bancaria o por link de pago (Webpay, Mercado Pago). Cuando confirmamos el boceto te enviamos los datos de pago. No cobramos antes de aprobar el diseño."
+  },
+  {
+    q: "¿Y si llega dañado por el courier?",
+    a: "Despachamos con embalaje reforzado y seguro de fragilidad. Si tu pieza llega dañada, mándanos fotos por WhatsApp dentro de las 48 horas siguientes y la reponemos o reembolsamos."
+  },
+  {
+    q: "¿Tienen tienda física?",
+    a: "El taller está en la Región de los Ríos pero no atendemos público presencial. Todo el contacto es por WhatsApp para que la operación sea ágil."
+  },
+  {
+    q: "¿En qué material están hechas las piezas?",
+    a: "Trabajamos exclusivamente con terciado (madera contrachapada), de espesor variable según el producto. No usamos acrílico, MDF crudo, plástico ni vinilo."
+  }
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: faq.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a }
+  }))
+};
+---
+
+<BaseLayout
+  title="Preguntas frecuentes — LáserCrafts"
+  description="Plazos, despachos, personalización, devoluciones y todo lo que suele consultarnos."
+>
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(faqSchema)}></script>
+
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Inicio</a> <span>›</span> <span aria-current="page">Preguntas frecuentes</span>
+    </nav>
+
+    <article class="editorial section">
+      <span class="eyebrow">FAQ</span>
+      <h1>Preguntas frecuentes</h1>
+      <p class="lead">Las preguntas que más nos hacen, contestadas sin rodeos. Si no encuentras lo tuyo, escríbenos por WhatsApp.</p>
+
+      <div class="acordeon">
+        {faq.map((f, i) => (
+          <details>
+            <summary>{f.q}</summary>
+            <p>{f.a}</p>
+          </details>
+        ))}
+      </div>
+
+      <p class="cierre">
+        <a href={wa} target="_blank" rel="noopener" class="btn btn-primary" data-wa-context="faq">
+          ¿Tu pregunta no está aquí? Escríbenos →
+        </a>
+      </p>
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  .breadcrumb { padding: var(--space-5) 0 var(--space-3); font-size: var(--fs-small); color: var(--color-fieltro); }
+  .breadcrumb a { color: var(--color-fieltro); text-decoration: none; }
+  .breadcrumb span { margin: 0 var(--space-1); }
+  .editorial h1 { font-size: var(--fs-h1); margin: var(--space-3) 0 var(--space-4); }
+  .editorial .lead { font-size: var(--fs-lead); color: var(--color-fieltro); margin-bottom: var(--space-6); }
+
+  .acordeon { border-top: 1px solid var(--color-profundo-08); margin-bottom: var(--space-6); }
+  details { border-bottom: 1px solid var(--color-profundo-08); padding: 0; }
+  summary {
+    list-style: none;
+    cursor: pointer;
+    padding: var(--space-4) 0;
+    font-weight: 500;
+    font-size: var(--fs-lead);
+    color: var(--color-profundo);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font-size: 1.6rem; font-weight: 400; color: var(--color-fieltro); }
+  details[open] summary::after { content: "−"; }
+  details p { padding: 0 0 var(--space-5); color: var(--color-fieltro); max-width: 64ch; }
+  .cierre { margin-top: var(--space-5); }
+</style>

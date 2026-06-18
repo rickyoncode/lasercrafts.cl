@@ -1,0 +1,83 @@
+---
+import { type Product, formatPrice } from "../data/products";
+import { ocasionBySlug } from "../data/ocasiones";
+
+type Props = { product: Product };
+const { product } = Astro.props;
+const ocasion = ocasionBySlug(product.ocasion);
+---
+
+<a href={`/producto/${product.slug}`} class="card">
+  <div class="card-img">
+    <img src={product.imagen} alt={product.nombre} loading="lazy" />
+  </div>
+  <div class="card-body">
+    <p class="ocasion-tag">{ocasion?.nombre ?? "Regalo"}</p>
+    <h3 class="card-title">{product.nombre}</h3>
+    <p class="card-price">{formatPrice(product.precio)}</p>
+    <p class="card-plazo">Listo en {product.plazoDias.min}–{product.plazoDias.max} días</p>
+  </div>
+</a>
+
+<style>
+  .card {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-papel);
+    text-decoration: none;
+    color: inherit;
+    border-radius: var(--radius-tile);
+    overflow: hidden;
+    border: 1px solid var(--color-profundo-08);
+    transition: transform 0.18s ease, border-color 0.18s ease;
+  }
+  .card:hover {
+    border-color: var(--color-profundo-16);
+    transform: translateY(-2px);
+  }
+  .card-img {
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--color-nogal-12);
+  }
+  .card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+  .card:hover .card-img img {
+    transform: scale(1.02);
+  }
+  .card-body {
+    padding: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  .ocasion-tag {
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    color: var(--color-fieltro);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin: 0 0 var(--space-2);
+  }
+  .card-title {
+    font-size: var(--fs-lead);
+    margin: 0 0 var(--space-2);
+    line-height: 1.2;
+  }
+  .card-price {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: var(--fs-h3);
+    color: var(--color-profundo);
+    margin: 0;
+  }
+  .card-plazo {
+    font-size: var(--fs-small);
+    color: var(--color-fieltro);
+    margin: var(--space-1) 0 0;
+  }
+</style>

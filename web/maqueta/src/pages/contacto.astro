@@ -1,0 +1,77 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { waLink, phoneDisplay, horario } from "../lib/whatsapp";
+const wa = waLink({ kind: "home" });
+---
+
+<BaseLayout
+  title="Contacto — LáserCrafts"
+  description="Conversemos por WhatsApp, email o Instagram. Horario lun a vie 9 a 18."
+>
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Inicio</a> <span>›</span> <span aria-current="page">Contacto</span>
+    </nav>
+
+    <article class="editorial section">
+      <span class="eyebrow">Conversemos</span>
+      <h1>Cómo escribirnos</h1>
+      <p class="lead">El canal principal es WhatsApp. Es donde respondemos más rápido y donde se cierran los pedidos.</p>
+
+      <div class="canales">
+        <a href={wa} target="_blank" rel="noopener" class="canal canal-primario" data-wa-context="contacto-wa">
+          <div>
+            <p class="canal-label">WhatsApp</p>
+            <p class="canal-valor">{phoneDisplay}</p>
+            <p class="canal-nota">{horario}</p>
+          </div>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+
+        <a href="https://instagram.com/lasercraftss" target="_blank" rel="noopener" class="canal">
+          <div>
+            <p class="canal-label">Instagram</p>
+            <p class="canal-valor">@lasercraftss</p>
+            <p class="canal-nota">Catálogo, novedades y clientes felices.</p>
+          </div>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+
+        <a href="mailto:hola@lasercrafts.cl" class="canal">
+          <div>
+            <p class="canal-label">Email</p>
+            <p class="canal-valor">hola@lasercrafts.cl</p>
+            <p class="canal-nota">Para cosas largas o adjuntos pesados.</p>
+          </div>
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <h2>Ubicación</h2>
+      <p>Taller en la Región de los Ríos, Chile. <strong>No atendemos público presencial</strong> — todo el contacto es por WhatsApp o redes.</p>
+
+      <h2>Pedidos por volumen / empresa</h2>
+      <p>Para souvenirs de matrimonio, packaging branded para tu emprendimiento o regalos corporativos, escríbenos directo por WhatsApp con la cantidad estimada y la fecha tope. Te respondemos con propuesta y cotización en 24–48 horas hábiles.</p>
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  .breadcrumb { padding: var(--space-5) 0 var(--space-3); font-size: var(--fs-small); color: var(--color-fieltro); }
+  .breadcrumb a { color: var(--color-fieltro); text-decoration: none; }
+  .breadcrumb span { margin: 0 var(--space-1); }
+  .editorial h1 { font-size: var(--fs-h1); margin: var(--space-3) 0 var(--space-4); }
+  .editorial .lead { font-size: var(--fs-lead); color: var(--color-fieltro); margin-bottom: var(--space-6); }
+
+  .canales { display: flex; flex-direction: column; gap: var(--space-3); margin: var(--space-5) 0 var(--space-7); }
+  .canal { display: flex; justify-content: space-between; align-items: center; gap: var(--space-3); padding: var(--space-5); background: var(--color-papel); border: 1px solid var(--color-profundo-08); border-radius: var(--radius-tile); text-decoration: none; color: inherit; transition: border-color 0.15s ease, transform 0.15s ease; }
+  .canal:hover { border-color: var(--color-profundo-16); transform: translateY(-2px); }
+  .canal-primario { background: var(--color-profundo); color: var(--color-papel); border-color: var(--color-profundo); }
+  .canal-primario:hover { border-color: var(--color-profundo); }
+  .canal-label { font-family: var(--font-mono); font-size: var(--fs-micro); text-transform: uppercase; letter-spacing: 0.14em; margin: 0 0 var(--space-2); color: var(--color-fieltro); }
+  .canal-primario .canal-label { color: var(--color-nogal); }
+  .canal-valor { font-family: var(--font-display); font-size: var(--fs-h3); font-weight: 600; margin: 0 0 var(--space-1); }
+  .canal-nota { font-size: var(--fs-small); margin: 0; color: var(--color-fieltro); }
+  .canal-primario .canal-nota { color: rgba(255, 255, 255, 0.7); }
+  .canal .arrow { font-size: var(--fs-h3); }
+</style>

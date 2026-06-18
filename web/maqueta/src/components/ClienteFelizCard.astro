@@ -1,0 +1,53 @@
+---
+import type { ClienteFeliz } from "../data/clientesFelices";
+
+type Props = { cliente: ClienteFeliz };
+const { cliente } = Astro.props;
+---
+
+<figure class="cf">
+  <div class="cf-img">
+    <img src={cliente.imagen} alt={`Pieza entregada a ${cliente.nombre}`} loading="lazy" />
+  </div>
+  <figcaption>
+    <p class="cf-ocasion">{cliente.ocasion}</p>
+    <p class="cf-nombre">{cliente.nombre} · {cliente.ciudad}</p>
+  </figcaption>
+</figure>
+
+<style>
+  .cf {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+  }
+  .cf-img {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: var(--radius-card);
+    background: var(--color-nogal-12);
+  }
+  .cf-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  figcaption {
+    padding: 0 var(--space-1);
+  }
+  .cf-ocasion {
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-fieltro);
+    margin: 0 0 var(--space-1);
+  }
+  .cf-nombre {
+    color: var(--color-profundo);
+    font-size: var(--fs-small);
+    font-weight: 500;
+    margin: 0;
+  }
+</style>

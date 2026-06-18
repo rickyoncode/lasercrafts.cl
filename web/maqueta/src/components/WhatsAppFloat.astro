@@ -1,0 +1,39 @@
+---
+import { waLink } from "../lib/whatsapp";
+const wa = waLink({ kind: "flotante" });
+---
+
+<a href={wa} target="_blank" rel="noopener" class="wa-float" aria-label="Escríbenos por WhatsApp" data-wa-context="floating">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M17.6 6.3A8 8 0 0 0 4.3 16l-1.1 4 4.1-1.1A8 8 0 1 0 17.6 6.3zm-5.6 12.5h-.1a6.6 6.6 0 0 1-3.4-.9l-.2-.1-2.4.6.6-2.4-.2-.2a6.6 6.6 0 0 1 10.3-8 6.6 6.6 0 0 1-4.6 11.3zm3.6-4.9-1.3-.5c-.2 0-.3 0-.4.1l-.6.7c-.1.2-.2.2-.4.1a5.4 5.4 0 0 1-2.7-2.4c-.1-.2 0-.4.1-.5l.4-.5a.4.4 0 0 0 0-.4l-.6-1.3c-.1-.4-.3-.3-.4-.3h-.4c-.1 0-.4.1-.6.3a1.8 1.8 0 0 0-.6 1.4 3 3 0 0 0 .7 1.6 7 7 0 0 0 2.8 2.5c.4.2.7.3 1 .4.4.1.7.1 1 0 .4 0 .9-.4 1.1-.7.1-.4.1-.7.1-.8 0-.1-.1-.2-.3-.3z"/>
+  </svg>
+</a>
+
+<style>
+  .wa-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 60;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--color-profundo);
+    color: var(--color-papel);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(47, 69, 80, 0.25);
+    text-decoration: none;
+    transition: transform 0.15s ease;
+  }
+  .wa-float:hover {
+    transform: scale(1.04);
+  }
+  @media (min-width: 1100px) {
+    .wa-float {
+      bottom: 32px;
+      right: 32px;
+    }
+  }
+</style>

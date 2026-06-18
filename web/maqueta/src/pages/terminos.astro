@@ -1,0 +1,68 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Términos y condiciones — LáserCrafts"
+  description="Términos generales de la relación entre LáserCrafts y sus clientes."
+>
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Inicio</a> <span>›</span> <span aria-current="page">Términos y condiciones</span>
+    </nav>
+
+    <article class="editorial section">
+      <span class="eyebrow">Legal · borrador</span>
+      <h1>Términos y condiciones</h1>
+      <p class="updated">Última actualización: junio 2026 · <strong>Borrador — pendiente revisión legal.</strong></p>
+
+      <h2>1. Naturaleza del servicio</h2>
+      <p>LáserCrafts (marca registrada operada por <strong>Borquez Solutions SpA</strong>) ofrece servicios de fabricación y comercialización de productos personalizados en terciado grabado a láser, con despacho a todo Chile. El sitio <strong>lasercrafts.cl</strong> funciona como catálogo: la formalización de cada pedido se realiza por WhatsApp, no mediante checkout en línea.</p>
+
+      <h2>2. Cómo se formaliza un pedido</h2>
+      <ol>
+        <li>El cliente revisa el catálogo en el sitio.</li>
+        <li>Al hacer clic en "Pedir por WhatsApp" se inicia una conversación.</li>
+        <li>LáserCrafts confirma producto, personalización y plazo, y envía un boceto digital para aprobación.</li>
+        <li>El cliente aprueba el boceto y realiza el pago según los métodos acordados.</li>
+        <li>Recién entonces comienza la producción.</li>
+      </ol>
+      <p>Ningún pedido entra en producción sin aprobación expresa del boceto.</p>
+
+      <h2>3. Personalización y modificaciones</h2>
+      <p>El cliente es responsable de la corrección del texto, ortografía y datos enviados para el grabado. Tras la aprobación del boceto, cualquier modificación posterior queda sujeta a disponibilidad y, eventualmente, a costo adicional.</p>
+
+      <h2>4. Plazos</h2>
+      <p>Los plazos publicados en cada producto son estimados y se calculan en días hábiles desde la aprobación del boceto y confirmación de pago. En temporada alta (Día de la Madre, Día del Padre, Navidad, San Valentín) los plazos pueden extenderse; siempre se informa antes de cobrar.</p>
+
+      <h2>5. Pagos</h2>
+      <p>Se aceptan transferencia bancaria, Webpay y Mercado Pago. Los datos de pago se envían por WhatsApp tras la aprobación del boceto. La emisión de boleta o factura se gestiona a través de Borquez Solutions SpA con los datos tributarios que el cliente proporcione.</p>
+
+      <h2>6. Reserva del derecho de admisión</h2>
+      <p>LáserCrafts se reserva el derecho de no producir contenidos que considere ofensivos, discriminatorios o que infrinjan derechos de terceros (incluyendo derechos de marca y autor). En esos casos, el monto pagado se reembolsa íntegro.</p>
+
+      <h2>7. Propiedad intelectual</h2>
+      <p>La marca <strong>LáserCrafts</strong>, su logo, diseños y contenido del sitio son propiedad de Borquez Solutions SpA y están registrados en INAPI. El cliente garantiza que cualquier contenido que envíe para grabar (textos, logos, imágenes) le pertenece o cuenta con autorización para su uso.</p>
+
+      <h2>8. Limitación de responsabilidad</h2>
+      <p>LáserCrafts no se hace responsable por demoras de couriers que excedan los plazos comprometidos por estos, por daños posteriores a la entrega (mal uso, exposición a humedad o golpes), ni por la pérdida de información grabada por desgaste natural de la madera.</p>
+
+      <h2>9. Modificaciones</h2>
+      <p>Estos términos pueden ser modificados en cualquier momento. La versión vigente es siempre la publicada en este sitio.</p>
+
+      <h2>10. Jurisdicción</h2>
+      <p>Cualquier controversia relacionada con un pedido se rige por la legislación chilena, en particular la <strong>Ley N° 19.496</strong> sobre Protección de los Derechos de los Consumidores.</p>
+
+      <h2>11. Contacto</h2>
+      <p>Para reclamos, consultas o ejercicio de derechos del consumidor: <a href="mailto:hola@lasercrafts.cl">hola@lasercrafts.cl</a> o WhatsApp <a href="/contacto">+56 9 2644 9047</a>.</p>
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  .breadcrumb { padding: var(--space-5) 0 var(--space-3); font-size: var(--fs-small); color: var(--color-fieltro); }
+  .breadcrumb a { color: var(--color-fieltro); text-decoration: none; }
+  .breadcrumb span { margin: 0 var(--space-1); }
+  .editorial h1 { font-size: var(--fs-h1); margin: var(--space-3) 0 var(--space-2); }
+  .updated { color: var(--color-fieltro); font-size: var(--fs-small); margin-bottom: var(--space-6); }
+</style>

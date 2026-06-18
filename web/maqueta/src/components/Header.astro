@@ -1,0 +1,463 @@
+---
+import { waLink } from "../lib/whatsapp";
+import { ocasiones } from "../data/ocasiones";
+import { productsByOcasion } from "../data/products";
+
+const wa = waLink({ kind: "home" });
+const path = Astro.url.pathname;
+const isActive = (href: string) => (href === "/" ? path === "/" : path.startsWith(href));
+const isProductosActive = path.startsWith("/productos");
+---
+
+<header class="site-header">
+  <div class="container header-row">
+    <a href="/" class="logo-link" aria-label="LáserCrafts · Inicio">
+      <img src="/logo-horizontal.svg" alt="" class="logo-img" />
+    </a>
+
+    <nav class="nav-desktop" aria-label="Navegación principal">
+      <!-- Productos con mega-menú -->
+      <div class="nav-group" data-megamenu>
+        <button
+          class:list={["nav-link", "nav-trigger", isProductosActive && "active"]}
+          aria-expanded="false"
+          aria-controls="megamenu-productos"
+          data-megamenu-trigger
+        >
+          Productos
+          <svg class="caret" width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+            <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+
+        <div
+          id="megamenu-productos"
+          class="megamenu"
+          data-megamenu-panel
+          role="menu"
+          hidden
+        >
+          <div class="megamenu-inner container">
+            <div class="mm-col mm-col-intro">
+              <p class="mm-eyebrow">Por ocasión</p>
+              <p class="mm-lead">Elige por la fecha — no por el producto.</p>
+              <a href="/productos" class="mm-todos" role="menuitem">
+                Ver todos los productos <span aria-hidden="true">→</span>
+              </a>
+            </div>
+            <ul class="mm-grid" role="none">
+              {ocasiones.map((o) => (
+                <li role="none">
+                  <a href={`/productos/${o.slug}`} class="mm-item" role="menuitem">
+                    <span class="mm-item-nombre">{o.nombre}</span>
+                    <span class="mm-item-meta">{productsByOcasion(o.slug).length} productos</span>
+                    <span class="mm-item-desc">{o.descripcion}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <a href="/sobre" class:list={["nav-link", isActive("/sobre") && "active"]}>Sobre</a>
+      <a href="/preguntas-frecuentes" class:list={["nav-link", isActive("/preguntas-frecuentes") && "active"]}>FAQ</a>
+      <a href="/contacto" class:list={["nav-link", isActive("/contacto") && "active"]}>Contacto</a>
+      <a href="/empresas" class:list={["nav-link", "nav-link-b2b", isActive("/empresas") && "active"]}>Empresas</a>
+    </nav>
+
+    <a href={wa} target="_blank" rel="noopener" class="btn btn-primary btn-wa" data-wa-context="header">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+        <path d="M17.6 6.3A8 8 0 0 0 4.3 16l-1.1 4 4.1-1.1A8 8 0 1 0 17.6 6.3zm-5.6 12.5h-.1a6.6 6.6 0 0 1-3.4-.9l-.2-.1-2.4.6.6-2.4-.2-.2a6.6 6.6 0 0 1 10.3-8 6.6 6.6 0 0 1-4.6 11.3zm3.6-4.9-1.3-.5c-.2 0-.3 0-.4.1l-.6.7c-.1.2-.2.2-.4.1a5.4 5.4 0 0 1-2.7-2.4c-.1-.2 0-.4.1-.5l.4-.5a.4.4 0 0 0 0-.4l-.6-1.3c-.1-.4-.3-.3-.4-.3h-.4c-.1 0-.4.1-.6.3a1.8 1.8 0 0 0-.6 1.4 3 3 0 0 0 .7 1.6 7 7 0 0 0 2.8 2.5c.4.2.7.3 1 .4.4.1.7.1 1 0 .4 0 .9-.4 1.1-.7.1-.4.1-.7.1-.8 0-.1-.1-.2-.3-.3z"/>
+      </svg>
+      <span>WhatsApp</span>
+    </a>
+
+    <button class="nav-toggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="nav-mobile" id="nav-toggle">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="nav-mobile" id="nav-mobile" aria-label="Navegación móvil" hidden>
+    <details class="mobile-group">
+      <summary class="nav-link-mobile">
+        <span>Productos</span>
+        <svg width="12" height="8" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+          <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </summary>
+      <div class="mobile-submenu">
+        <a href="/productos" class="mobile-sublink mobile-sublink-strong">Todos los productos</a>
+        {ocasiones.map((o) => (
+          <a href={`/productos/${o.slug}`} class="mobile-sublink">{o.nombre}</a>
+        ))}
+      </div>
+    </details>
+    <a href="/sobre" class="nav-link-mobile">Sobre</a>
+    <a href="/preguntas-frecuentes" class="nav-link-mobile">Preguntas frecuentes</a>
+    <a href="/contacto" class="nav-link-mobile">Contacto</a>
+    <a href="/empresas" class="nav-link-mobile nav-link-mobile-b2b">Empresas <span aria-hidden="true">→</span></a>
+    <a href={wa} target="_blank" rel="noopener" class="btn btn-primary btn-block nav-link-mobile-cta">WhatsApp</a>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    border-bottom: 1px solid var(--color-profundo-08);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: saturate(180%) blur(8px);
+    background: rgba(255, 255, 255, 0.92);
+  }
+  .header-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    min-height: 64px;
+    padding-top: var(--space-2);
+    padding-bottom: var(--space-2);
+  }
+  .logo-link {
+    color: var(--color-profundo);
+    display: inline-flex;
+    align-items: center;
+    margin-right: auto;
+  }
+  .logo-img {
+    height: 36px;
+    width: auto;
+    color: var(--color-profundo);
+  }
+
+  /* Nav desktop */
+  .nav-desktop {
+    display: none;
+    gap: var(--space-5);
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .nav-desktop {
+      display: flex;
+    }
+  }
+  .nav-link {
+    text-decoration: none;
+    color: var(--color-profundo);
+    font-weight: 500;
+    font-size: var(--fs-small);
+    padding: var(--space-2) 0;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: none;
+    border: 0;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    font-family: inherit;
+    line-height: 1;
+    padding: var(--space-2) 0;
+  }
+  .nav-link:hover {
+    border-bottom-color: var(--color-profundo-16);
+  }
+  .nav-link.active {
+    border-bottom-color: var(--color-profundo);
+  }
+  .nav-link-b2b {
+    color: var(--color-fieltro);
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    margin-left: var(--space-2);
+    padding-left: var(--space-3);
+    border-left: 1px solid var(--color-profundo-08);
+  }
+  .nav-link-b2b:hover {
+    color: var(--color-profundo);
+    border-bottom-color: transparent;
+  }
+  .nav-link-mobile-b2b {
+    color: var(--color-fieltro);
+    font-family: var(--font-mono);
+    font-size: var(--fs-small);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+  .nav-trigger .caret {
+    transition: transform 0.18s ease;
+  }
+  .nav-trigger[aria-expanded="true"] .caret {
+    transform: rotate(180deg);
+  }
+
+  /* Megamenú */
+  .nav-group {
+    position: static; /* el panel se posiciona respecto al header */
+  }
+  .megamenu {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    background: var(--color-papel);
+    border-top: 1px solid var(--color-profundo-08);
+    border-bottom: 1px solid var(--color-profundo-08);
+    box-shadow: 0 12px 32px rgba(47, 69, 80, 0.06);
+  }
+  .megamenu[hidden] {
+    display: none;
+  }
+  .megamenu-inner {
+    display: grid;
+    grid-template-columns: 0.9fr 2.1fr;
+    gap: var(--space-7);
+    padding-top: var(--space-6);
+    padding-bottom: var(--space-6);
+  }
+  .mm-col-intro {
+    border-right: 1px solid var(--color-profundo-08);
+    padding-right: var(--space-5);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-4);
+    min-height: 180px;
+  }
+  .mm-eyebrow {
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-fieltro);
+    margin: 0;
+  }
+  .mm-lead {
+    font-family: var(--font-display);
+    font-size: var(--fs-h3);
+    color: var(--color-profundo);
+    line-height: 1.15;
+    margin: 0;
+  }
+  .mm-todos {
+    text-decoration: none;
+    color: var(--color-profundo);
+    font-weight: 600;
+    font-size: var(--fs-small);
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) 0;
+    border-bottom: 1px solid var(--color-profundo);
+    align-self: flex-start;
+    transition: gap 0.18s ease;
+  }
+  .mm-todos:hover {
+    gap: var(--space-3);
+  }
+
+  .mm-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-3);
+  }
+  .mm-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-4);
+    border-radius: var(--radius-card);
+    text-decoration: none;
+    color: inherit;
+    transition: background 0.15s ease;
+    border: 1px solid transparent;
+  }
+  .mm-item:hover,
+  .mm-item:focus-visible {
+    background: var(--color-profundo-08);
+    border-color: var(--color-profundo-16);
+  }
+  .mm-item-nombre {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: var(--fs-lead);
+    color: var(--color-profundo);
+    line-height: 1.15;
+  }
+  .mm-item-meta {
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--color-fieltro);
+  }
+  .mm-item-desc {
+    font-size: var(--fs-small);
+    color: var(--color-fieltro);
+    margin-top: var(--space-2);
+    line-height: 1.45;
+  }
+
+  /* CTA WhatsApp del header */
+  .btn-wa {
+    display: none;
+    padding: 0.625rem 1rem;
+    font-size: var(--fs-small);
+  }
+  @media (min-width: 700px) {
+    .btn-wa {
+      display: inline-flex;
+    }
+  }
+
+  /* Botón hamburguesa */
+  .nav-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    background: none;
+    border: 0;
+    padding: var(--space-2);
+    border-radius: 4px;
+  }
+  .nav-toggle span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--color-profundo);
+  }
+  @media (min-width: 900px) {
+    .nav-toggle {
+      display: none;
+    }
+  }
+
+  /* Nav mobile */
+  .nav-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    padding: var(--space-4) var(--gutter) var(--space-5);
+    border-top: 1px solid var(--color-profundo-08);
+  }
+  .nav-mobile[hidden] {
+    display: none;
+  }
+  .nav-link-mobile {
+    text-decoration: none;
+    color: var(--color-profundo);
+    font-size: var(--fs-lead);
+    padding: var(--space-3) 0;
+    border-bottom: 1px solid var(--color-profundo-08);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+  .nav-link-mobile-cta {
+    margin-top: var(--space-3);
+  }
+
+  /* Mobile productos accordion */
+  .mobile-group {
+    border-bottom: 1px solid var(--color-profundo-08);
+  }
+  .mobile-group > summary {
+    list-style: none;
+    cursor: pointer;
+  }
+  .mobile-group > summary::-webkit-details-marker {
+    display: none;
+  }
+  .mobile-group[open] > summary > svg {
+    transform: rotate(180deg);
+  }
+  .mobile-group > summary > svg {
+    transition: transform 0.18s ease;
+  }
+  .mobile-submenu {
+    display: flex;
+    flex-direction: column;
+    padding: var(--space-2) 0 var(--space-3);
+  }
+  .mobile-sublink {
+    padding: var(--space-3) var(--space-3);
+    color: var(--color-profundo);
+    text-decoration: none;
+    font-size: var(--fs-body);
+    border-left: 2px solid var(--color-profundo-08);
+    margin-left: var(--space-2);
+  }
+  .mobile-sublink:hover {
+    border-left-color: var(--color-profundo);
+    background: var(--color-profundo-08);
+  }
+  .mobile-sublink-strong {
+    font-weight: 600;
+  }
+</style>
+
+<script>
+  // Menú móvil hamburguesa
+  const toggle = document.getElementById("nav-toggle");
+  const menu = document.getElementById("nav-mobile");
+  toggle?.addEventListener("click", () => {
+    const closed = menu?.hasAttribute("hidden");
+    if (closed) {
+      menu?.removeAttribute("hidden");
+      toggle.setAttribute("aria-expanded", "true");
+    } else {
+      menu?.setAttribute("hidden", "");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+  });
+
+  // Megamenú desktop: hover + click + Escape + click fuera
+  const group = document.querySelector<HTMLElement>("[data-megamenu]");
+  const trigger = document.querySelector<HTMLElement>("[data-megamenu-trigger]");
+  const panel = document.querySelector<HTMLElement>("[data-megamenu-panel]");
+
+  if (group && trigger && panel) {
+    const isDesktop = () => window.matchMedia("(min-width: 900px)").matches;
+
+    const open = () => {
+      if (!isDesktop()) return;
+      panel.removeAttribute("hidden");
+      trigger.setAttribute("aria-expanded", "true");
+    };
+    const close = () => {
+      panel.setAttribute("hidden", "");
+      trigger.setAttribute("aria-expanded", "false");
+    };
+    const toggleOpen = () => (panel.hasAttribute("hidden") ? open() : close());
+
+    let hoverTimer: ReturnType<typeof setTimeout> | null = null;
+    group.addEventListener("mouseenter", () => {
+      if (hoverTimer) clearTimeout(hoverTimer);
+      open();
+    });
+    group.addEventListener("mouseleave", () => {
+      if (hoverTimer) clearTimeout(hoverTimer);
+      hoverTimer = setTimeout(close, 120);
+    });
+
+    trigger.addEventListener("click", (e) => {
+      e.preventDefault();
+      toggleOpen();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") close();
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!group.contains(e.target as Node)) close();
+    });
+  }
+</script>

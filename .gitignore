@@ -1,0 +1,23 @@
+# Dependencias y artefactos de build (la maqueta vive en web/maqueta/)
+node_modules/
+web/maqueta/dist/
+
+# Logs y caches locales
+*.log
+.cache/
+.tmp/
+
+# Sistema operativo / herramientas
+.DS_Store
+Thumbs.db
+*Zone.Identifier
+.playwright-mcp/
+
+# Editor
+.vscode/
+.idea/
+
+# Variables de entorno
+.env
+.env.*
+!.env.example

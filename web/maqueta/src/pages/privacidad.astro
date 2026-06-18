@@ -1,0 +1,84 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Política de privacidad — LáserCrafts"
+  description="Qué datos personales recogemos, cómo los usamos y cuáles son tus derechos según la Ley 19.628."
+>
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Inicio</a> <span>›</span> <span aria-current="page">Privacidad</span>
+    </nav>
+
+    <article class="editorial section">
+      <span class="eyebrow">Legal · borrador</span>
+      <h1>Política de privacidad</h1>
+      <p class="updated">Última actualización: junio 2026 · <strong>Borrador — pendiente revisión legal.</strong></p>
+
+      <p class="lead">Esta política describe cómo LáserCrafts (operado por Borquez Solutions SpA) recolecta, utiliza y protege los datos personales de quienes nos contactan o realizan pedidos. Se rige por la <strong>Ley N° 19.628</strong> sobre Protección de la Vida Privada y, cuando corresponda, la <strong>Ley N° 21.719</strong> en lo que ya esté en vigencia.</p>
+
+      <h2>1. Qué datos recogemos</h2>
+      <p>Solo los necesarios para entregar el servicio:</p>
+      <ul>
+        <li><strong>Nombre y datos de contacto</strong>: nombre, número de WhatsApp, eventual email.</li>
+        <li><strong>Datos del pedido</strong>: textos a grabar, opciones de personalización.</li>
+        <li><strong>Datos de despacho</strong>: dirección, comuna, región, eventual nota de entrega.</li>
+        <li><strong>Datos de facturación</strong>: solo si pides boleta o factura, RUT y razón social.</li>
+        <li><strong>Datos de pago</strong>: no almacenamos información de tarjetas. Los pagos son procesados por terceros (banco, Webpay, Mercado Pago) bajo sus propias políticas.</li>
+      </ul>
+
+      <h2>2. Cómo los recogemos</h2>
+      <p>Los datos se reciben directamente del cliente, a través de la conversación por WhatsApp o, eventualmente, email. <strong>Este sitio no utiliza formularios web que envíen datos a un servidor</strong> — todos los CTA derivan al cliente a WhatsApp.</p>
+
+      <h2>3. Para qué los usamos</h2>
+      <ul>
+        <li>Producir y despachar el pedido.</li>
+        <li>Comunicarnos contigo sobre el estado del pedido.</li>
+        <li>Emitir comprobantes tributarios.</li>
+        <li>Cuando lo permites expresamente, publicar fotos del pedido entregado en redes sociales (sección "Cliente feliz").</li>
+      </ul>
+
+      <h2>4. Con quién los compartimos</h2>
+      <p>Solo con terceros estrictamente necesarios:</p>
+      <ul>
+        <li><strong>Couriers</strong> (Chilexpress, Starken, BlueExpress, Correos de Chile) para realizar el despacho.</li>
+        <li><strong>Procesadores de pago</strong> (Webpay, Mercado Pago) cuando se utiliza ese método.</li>
+        <li><strong>Servicio de Impuestos Internos</strong> en el caso de las boletas y facturas emitidas.</li>
+      </ul>
+      <p>No vendemos ni cedemos datos personales a terceros con fines comerciales.</p>
+
+      <h2>5. Cuánto tiempo los guardamos</h2>
+      <p>Los datos del pedido se conservan por el plazo necesario para responder a eventuales reclamos y cumplir obligaciones tributarias (6 años para documentación tributaria, según la normativa chilena). Posteriormente se eliminan o anonimizan.</p>
+
+      <h2>6. Tus derechos (Ley 19.628)</h2>
+      <p>Tienes derecho a:</p>
+      <ul>
+        <li><strong>Acceder</strong> a los datos que mantenemos sobre ti.</li>
+        <li><strong>Rectificar</strong> datos incorrectos o desactualizados.</li>
+        <li><strong>Cancelar</strong> tus datos cuando ya no sean necesarios para la finalidad por la que fueron recolectados.</li>
+        <li><strong>Oponerte</strong> al uso de tus datos en circunstancias específicas.</li>
+        <li><strong>Solicitar la portabilidad</strong> de tus datos.</li>
+      </ul>
+      <p>Para ejercer estos derechos: <a href="mailto:hola@lasercrafts.cl">hola@lasercrafts.cl</a>. Te responderemos dentro de los plazos legales.</p>
+
+      <h2>7. Cookies</h2>
+      <p>Este sitio usa únicamente cookies técnicas necesarias para su funcionamiento y, eventualmente, cookies anónimas de analítica (Google Analytics o Plausible). No utilizamos cookies de publicidad ni de remarketing.</p>
+
+      <h2>8. Seguridad</h2>
+      <p>Mantenemos las conversaciones de WhatsApp y los datos de pedidos bajo el cifrado propio de cada plataforma. No transferimos datos a servidores externos al taller salvo lo necesario para el despacho.</p>
+
+      <h2>9. Responsable de los datos</h2>
+      <p><strong>Borquez Solutions SpA</strong> · Marca registrada LáserCrafts · Región de los Ríos, Chile · <a href="mailto:hola@lasercrafts.cl">hola@lasercrafts.cl</a>.</p>
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  .breadcrumb { padding: var(--space-5) 0 var(--space-3); font-size: var(--fs-small); color: var(--color-fieltro); }
+  .breadcrumb a { color: var(--color-fieltro); text-decoration: none; }
+  .breadcrumb span { margin: 0 var(--space-1); }
+  .editorial h1 { font-size: var(--fs-h1); margin: var(--space-3) 0 var(--space-2); }
+  .updated { color: var(--color-fieltro); font-size: var(--fs-small); margin-bottom: var(--space-6); }
+  .editorial .lead { color: var(--color-fieltro); font-size: var(--fs-lead); margin-bottom: var(--space-6); }
+</style>

@@ -1,0 +1,59 @@
+---
+import type { Ocasion } from "../data/ocasiones";
+import { productsByOcasion } from "../data/products";
+
+type Props = { ocasion: Ocasion };
+const { ocasion } = Astro.props;
+const cuenta = productsByOcasion(ocasion.slug).length;
+---
+
+<a href={`/productos/${ocasion.slug}`} class="ocasion-tile">
+  <span class="eyebrow">{cuenta} productos</span>
+  <h3>{ocasion.nombre}</h3>
+  <p>{ocasion.descripcion}</p>
+  <span class="arrow" aria-hidden="true">→</span>
+</a>
+
+<style>
+  .ocasion-tile {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    padding: var(--space-5);
+    background: var(--color-papel);
+    border: 1px solid var(--color-profundo-08);
+    border-radius: var(--radius-tile);
+    text-decoration: none;
+    color: inherit;
+    position: relative;
+    min-height: 200px;
+    transition: border-color 0.18s ease, transform 0.18s ease;
+  }
+  .ocasion-tile:hover {
+    border-color: var(--color-profundo-16);
+    transform: translateY(-2px);
+  }
+  .ocasion-tile .eyebrow {
+    margin-bottom: var(--space-1);
+  }
+  .ocasion-tile h3 {
+    margin-bottom: var(--space-2);
+  }
+  .ocasion-tile p {
+    color: var(--color-fieltro);
+    font-size: var(--fs-small);
+    margin: 0;
+    max-width: 32ch;
+  }
+  .arrow {
+    position: absolute;
+    bottom: var(--space-4);
+    right: var(--space-5);
+    font-size: var(--fs-h3);
+    color: var(--color-profundo);
+    transition: transform 0.18s ease;
+  }
+  .ocasion-tile:hover .arrow {
+    transform: translateX(4px);
+  }
+</style>

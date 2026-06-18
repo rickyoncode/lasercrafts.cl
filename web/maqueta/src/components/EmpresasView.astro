@@ -1,0 +1,512 @@
+---
+import EmpresasLayout from "../layouts/EmpresasLayout.astro";
+import { waLink, phoneDisplay } from "../lib/whatsapp";
+import { empresasCopy, LINKEDIN_URL, EMAIL_B2B } from "../i18n/empresas";
+import type { Lang } from "../i18n/empresas";
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const copy = empresasCopy[lang];
+const wa = waLink({ kind: "empresas", lang });
+---
+
+<EmpresasLayout lang={lang}>
+  <!-- HERO -->
+  <section class="emp-hero">
+    <div class="container emp-hero-grid">
+      <div class="emp-hero-text">
+        <span class="eyebrow">{copy.hero.eyebrow}</span>
+        <h1>
+          {copy.hero.h1Pre}{" "}
+          <span class="hl">{copy.hero.h1Highlight}</span>
+          {copy.hero.h1Post && <> {copy.hero.h1Post}</>}
+        </h1>
+        <p class="lead">{copy.hero.lead}</p>
+        <div class="emp-hero-ctas">
+          <a href={wa} target="_blank" rel="noopener" class="btn btn-primary btn-large">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M17.6 6.3A8 8 0 0 0 4.3 16l-1.1 4 4.1-1.1A8 8 0 1 0 17.6 6.3zm-5.6 12.5h-.1a6.6 6.6 0 0 1-3.4-.9l-.2-.1-2.4.6.6-2.4-.2-.2a6.6 6.6 0 0 1 10.3-8 6.6 6.6 0 0 1-4.6 11.3zm3.6-4.9-1.3-.5c-.2 0-.3 0-.4.1l-.6.7c-.1.2-.2.2-.4.1a5.4 5.4 0 0 1-2.7-2.4c-.1-.2 0-.4.1-.5l.4-.5a.4.4 0 0 0 0-.4l-.6-1.3c-.1-.4-.3-.3-.4-.3h-.4c-.1 0-.4.1-.6.3a1.8 1.8 0 0 0-.6 1.4 3 3 0 0 0 .7 1.6 7 7 0 0 0 2.8 2.5c.4.2.7.3 1 .4.4.1.7.1 1 0 .4 0 .9-.4 1.1-.7.1-.4.1-.7.1-.8 0-.1-.1-.2-.3-.3z"/>
+            </svg>
+            <span>{copy.hero.ctaWa}</span>
+          </a>
+          <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer me" class="btn btn-ghost btn-large">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 1 1 8.3 6.5a1.78 1.78 0 0 1-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0 0 13 14.19a.66.66 0 0 0 0 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 0 1 2.7-1.4c1.55 0 3.36.86 3.36 3.66z"/>
+            </svg>
+            <span>{copy.hero.ctaLinkedin}</span>
+          </a>
+        </div>
+      </div>
+      <div class="emp-hero-photo">
+        <img src="/empresas/casos/futangue/page-1.png" alt={copy.hero.photoAlt} loading="eager" />
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <section class="emp-trust">
+    <div class="container">
+      <ul role="list" class="emp-trust-list">
+        {copy.trustStrip.map((t) => <li>{t}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <!-- CAPACIDADES -->
+  <section class="emp-caps section">
+    <div class="container">
+      <header class="emp-section-head">
+        <span class="eyebrow">{copy.capacidades.eyebrow}</span>
+        <h2>{copy.capacidades.h2}</h2>
+        <p class="lead">{copy.capacidades.lead}</p>
+      </header>
+      <div class="emp-caps-grid">
+        {
+          copy.capacidades.cards.map((c, i) => (
+            <article class="emp-cap-card">
+              <p class="emp-cap-num">{String(i + 1).padStart(2, "0")}</p>
+              <h3>{c.titulo}</h3>
+              <p>{c.descripcion}</p>
+            </article>
+          ))
+        }
+      </div>
+      <aside class="emp-cap-custom">
+        <div>
+          <p class="emp-cap-num">05</p>
+          <h3>{copy.capacidades.custom.kicker}</h3>
+          <p>{copy.capacidades.custom.texto}</p>
+        </div>
+        <a href={wa} target="_blank" rel="noopener" class="btn btn-primary">{copy.capacidades.custom.cta}</a>
+      </aside>
+    </div>
+  </section>
+
+  <!-- CASO FUTANGUE -->
+  <section class="emp-caso section">
+    <div class="container emp-caso-grid">
+      <div class="emp-caso-text">
+        <span class="eyebrow">{copy.caso.eyebrow}</span>
+        <h2>{copy.caso.h2}</h2>
+        <p class="lead">{copy.caso.intro}</p>
+        <ul class="emp-caso-bullets">
+          {copy.caso.bullets.map((b) => <li>{b}</li>)}
+        </ul>
+        <p class="emp-caso-pie">{copy.caso.pieFoto}</p>
+      </div>
+      <div class="emp-caso-galeria">
+        <figure>
+          <img src="/empresas/casos/futangue/page-2.png" alt={copy.caso.galeriaAlt[0]} loading="lazy" />
+        </figure>
+        <figure>
+          <img src="/empresas/casos/futangue/page-3.png" alt={copy.caso.galeriaAlt[1]} loading="lazy" />
+        </figure>
+        <figure>
+          <img src="/empresas/casos/futangue/page-4.png" alt={copy.caso.galeriaAlt[2]} loading="lazy" />
+        </figure>
+        <figure>
+          <img src="/empresas/casos/futangue/page-5.png" alt={copy.caso.galeriaAlt[3]} loading="lazy" />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section class="emp-proceso section">
+    <div class="container">
+      <header class="emp-section-head">
+        <span class="eyebrow">{copy.proceso.eyebrow}</span>
+        <h2>{copy.proceso.h2}</h2>
+      </header>
+      <ol class="emp-proceso-list">
+        {
+          copy.proceso.pasos.map((p, i) => (
+            <li>
+              <p class="emp-proceso-num">{String(i + 1).padStart(2, "0")}</p>
+              <h3>{p.titulo}</h3>
+              <p>{p.descripcion}</p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- MATERIALES -->
+  <section class="emp-materiales section">
+    <div class="container emp-materiales-grid">
+      <header>
+        <span class="eyebrow">{copy.materiales.eyebrow}</span>
+        <h2>{copy.materiales.h2}</h2>
+      </header>
+      <div class="emp-materiales-body editorial">
+        {copy.materiales.parrafos.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="emp-cta-final">
+    <div class="container">
+      <span class="eyebrow">{copy.ctaFinal.eyebrow}</span>
+      <h2>{copy.ctaFinal.h2}</h2>
+      <p class="lead">{copy.ctaFinal.lead}</p>
+      <div class="emp-cta-final-actions">
+        <a href={wa} target="_blank" rel="noopener" class="btn btn-primary btn-large">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M17.6 6.3A8 8 0 0 0 4.3 16l-1.1 4 4.1-1.1A8 8 0 1 0 17.6 6.3zm-5.6 12.5h-.1a6.6 6.6 0 0 1-3.4-.9l-.2-.1-2.4.6.6-2.4-.2-.2a6.6 6.6 0 0 1 10.3-8 6.6 6.6 0 0 1-4.6 11.3zm3.6-4.9-1.3-.5c-.2 0-.3 0-.4.1l-.6.7c-.1.2-.2.2-.4.1a5.4 5.4 0 0 1-2.7-2.4c-.1-.2 0-.4.1-.5l.4-.5a.4.4 0 0 0 0-.4l-.6-1.3c-.1-.4-.3-.3-.4-.3h-.4c-.1 0-.4.1-.6.3a1.8 1.8 0 0 0-.6 1.4 3 3 0 0 0 .7 1.6 7 7 0 0 0 2.8 2.5c.4.2.7.3 1 .4.4.1.7.1 1 0 .4 0 .9-.4 1.1-.7.1-.4.1-.7.1-.8 0-.1-.1-.2-.3-.3z"/>
+          </svg>
+          <span>{copy.ctaFinal.ctaWa}</span>
+        </a>
+        <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer me" class="btn btn-ghost btn-large">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M20.5 2h-17A1.5 1.5 0 0 0 2 3.5v17A1.5 1.5 0 0 0 3.5 22h17a1.5 1.5 0 0 0 1.5-1.5v-17A1.5 1.5 0 0 0 20.5 2zM8 19H5v-9h3zM6.5 8.25A1.75 1.75 0 1 1 8.3 6.5a1.78 1.78 0 0 1-1.8 1.75zM19 19h-3v-4.74c0-1.42-.6-1.93-1.38-1.93A1.74 1.74 0 0 0 13 14.19a.66.66 0 0 0 0 .14V19h-3v-9h2.9v1.3a3.11 3.11 0 0 1 2.7-1.4c1.55 0 3.36.86 3.36 3.66z"/>
+          </svg>
+          <span>{copy.ctaFinal.ctaLinkedin}</span>
+        </a>
+      </div>
+      <p class="emp-cta-final-meta">
+        <span>{copy.ctaFinal.emailLabel}: <a href={`mailto:${EMAIL_B2B}`}>{EMAIL_B2B}</a></span>
+        <span> · </span>
+        <span>WhatsApp: <a href={wa} target="_blank" rel="noopener">{phoneDisplay}</a></span>
+      </p>
+    </div>
+  </section>
+</EmpresasLayout>
+
+<style>
+  /* HERO */
+  .emp-hero {
+    padding-top: var(--space-7);
+    padding-bottom: var(--space-7);
+    background:
+      linear-gradient(180deg, var(--color-papel) 0%, var(--color-papel) 100%);
+  }
+  @media (min-width: 768px) {
+    .emp-hero {
+      padding-top: var(--space-8);
+      padding-bottom: var(--space-8);
+    }
+  }
+  .emp-hero-grid {
+    display: grid;
+    gap: var(--space-6);
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .emp-hero-grid {
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: var(--space-8);
+    }
+  }
+  .emp-hero-text h1 {
+    font-size: var(--fs-hero);
+    line-height: 1.05;
+    margin: var(--space-3) 0 var(--space-4);
+  }
+  .emp-hero-text h1 .hl {
+    color: var(--color-fieltro);
+  }
+  .emp-hero-text .lead {
+    font-size: var(--fs-lead);
+    color: var(--color-fieltro);
+    max-width: 36ch;
+    margin-bottom: var(--space-6);
+  }
+  .emp-hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-3);
+  }
+  .emp-hero-photo img {
+    width: 100%;
+    border-radius: var(--radius-tile);
+    box-shadow: 0 24px 60px rgba(47, 69, 80, 0.18);
+  }
+
+  /* TRUST */
+  .emp-trust {
+    background: var(--color-profundo);
+    color: var(--color-papel);
+    padding: var(--space-4) 0;
+  }
+  .emp-trust-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: var(--space-2) var(--space-6);
+    grid-template-columns: repeat(2, 1fr);
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+  }
+  @media (min-width: 900px) {
+    .emp-trust-list {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .emp-trust-list li {
+    opacity: 0.92;
+  }
+
+  /* Heads */
+  .emp-section-head {
+    max-width: 56ch;
+    margin-bottom: var(--space-7);
+  }
+  .emp-section-head h2 {
+    margin-top: var(--space-2);
+  }
+  .emp-section-head .lead {
+    color: var(--color-fieltro);
+    font-size: var(--fs-lead);
+    margin: 0;
+  }
+
+  /* CAPACIDADES */
+  .emp-caps-grid {
+    display: grid;
+    gap: var(--space-4);
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 700px) {
+    .emp-caps-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1100px) {
+    .emp-caps-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  .emp-cap-card {
+    background: var(--color-papel);
+    border: 1px solid var(--color-profundo-08);
+    border-radius: var(--radius-tile);
+    padding: var(--space-5);
+    transition: border-color 0.15s ease, transform 0.15s ease;
+  }
+  .emp-cap-card:hover {
+    border-color: var(--color-profundo-16);
+  }
+  .emp-cap-num {
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    letter-spacing: 0.18em;
+    color: var(--color-fieltro);
+    margin: 0 0 var(--space-3);
+  }
+  .emp-cap-card h3 {
+    font-size: var(--fs-h3);
+    margin: 0 0 var(--space-2);
+  }
+  .emp-cap-card p {
+    color: var(--color-fieltro);
+    font-size: var(--fs-small);
+    margin: 0;
+    line-height: 1.55;
+  }
+  .emp-cap-custom {
+    margin-top: var(--space-5);
+    padding: var(--space-6);
+    border-radius: var(--radius-tile);
+    background: var(--color-nogal-12);
+    display: grid;
+    gap: var(--space-4);
+    align-items: center;
+  }
+  @media (min-width: 900px) {
+    .emp-cap-custom {
+      grid-template-columns: 1fr auto;
+      padding: var(--space-7);
+    }
+  }
+  .emp-cap-custom h3 {
+    font-size: var(--fs-h2);
+    margin: 0 0 var(--space-3);
+  }
+  .emp-cap-custom p {
+    max-width: 60ch;
+    margin: 0;
+  }
+
+  /* CASO */
+  .emp-caso {
+    background: var(--color-profundo-08);
+  }
+  .emp-caso-grid {
+    display: grid;
+    gap: var(--space-7);
+  }
+  @media (min-width: 900px) {
+    .emp-caso-grid {
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: var(--space-8);
+      align-items: start;
+    }
+  }
+  .emp-caso-text h2 {
+    margin-top: var(--space-2);
+  }
+  .emp-caso-text .lead {
+    color: var(--color-fieltro);
+    font-size: var(--fs-lead);
+    margin-bottom: var(--space-5);
+  }
+  .emp-caso-bullets {
+    margin: 0 0 var(--space-5);
+    padding-left: 1.25rem;
+  }
+  .emp-caso-bullets li {
+    margin-bottom: var(--space-2);
+  }
+  .emp-caso-pie {
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-fieltro);
+    margin: 0;
+  }
+  .emp-caso-galeria {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-3);
+  }
+  .emp-caso-galeria figure {
+    margin: 0;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    background: var(--color-papel);
+    box-shadow: 0 8px 24px rgba(47, 69, 80, 0.08);
+  }
+  .emp-caso-galeria img {
+    width: 100%;
+    display: block;
+  }
+
+  /* PROCESO */
+  .emp-proceso-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    counter-reset: paso;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-4);
+  }
+  @media (min-width: 700px) {
+    .emp-proceso-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (min-width: 1100px) {
+    .emp-proceso-list {
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--space-3);
+    }
+  }
+  .emp-proceso-list li {
+    background: var(--color-papel);
+    border: 1px solid var(--color-profundo-08);
+    border-radius: var(--radius-tile);
+    padding: var(--space-5);
+  }
+  .emp-proceso-num {
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    letter-spacing: 0.18em;
+    color: var(--color-fieltro);
+    margin: 0 0 var(--space-3);
+  }
+  .emp-proceso-list h3 {
+    font-size: var(--fs-lead);
+    margin: 0 0 var(--space-2);
+  }
+  .emp-proceso-list p {
+    color: var(--color-fieltro);
+    font-size: var(--fs-small);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  /* MATERIALES — sección cuerpo madera */
+  .emp-materiales {
+    background: var(--color-nogal);
+    color: var(--color-papel);
+  }
+  .emp-materiales .eyebrow {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .emp-materiales h2 {
+    color: var(--color-papel);
+    margin-top: var(--space-2);
+  }
+  .emp-materiales-grid {
+    display: grid;
+    gap: var(--space-6);
+  }
+  @media (min-width: 900px) {
+    .emp-materiales-grid {
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: var(--space-8);
+      align-items: start;
+    }
+  }
+  .emp-materiales-body p {
+    margin-bottom: var(--space-4);
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  /* CTA FINAL */
+  .emp-cta-final {
+    background: var(--color-profundo);
+    color: var(--color-papel);
+    padding: var(--space-9) 0;
+    text-align: center;
+  }
+  .emp-cta-final .eyebrow {
+    color: rgba(255, 255, 255, 0.7);
+  }
+  .emp-cta-final h2 {
+    color: var(--color-papel);
+    font-size: var(--fs-h1);
+    max-width: 20ch;
+    margin: var(--space-3) auto var(--space-4);
+  }
+  .emp-cta-final .lead {
+    color: rgba(255, 255, 255, 0.84);
+    font-size: var(--fs-lead);
+    max-width: 56ch;
+    margin: 0 auto var(--space-6);
+  }
+  .emp-cta-final-actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-5);
+  }
+  .emp-cta-final-actions .btn-ghost {
+    color: var(--color-papel);
+    border-color: rgba(255, 255, 255, 0.32);
+  }
+  .emp-cta-final-actions .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.08);
+  }
+  .emp-cta-final-meta {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: var(--fs-small);
+    margin: 0;
+  }
+  .emp-cta-final-meta a {
+    color: var(--color-papel);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+</style>

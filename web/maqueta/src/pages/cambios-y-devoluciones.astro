@@ -1,0 +1,68 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Cambios y devoluciones — LáserCrafts"
+  description="Política de cambios, devoluciones y garantía por defectos de fabricación."
+>
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Inicio</a> <span>›</span> <span aria-current="page">Cambios y devoluciones</span>
+    </nav>
+
+    <article class="editorial section">
+      <span class="eyebrow">Legal · borrador</span>
+      <h1>Cambios y devoluciones</h1>
+      <p class="updated">Última actualización: junio 2026 · <strong>Borrador — pendiente revisión legal.</strong></p>
+
+      <h2>1. Productos personalizados</h2>
+      <p>Todos los productos de LáserCrafts son <strong>fabricados a pedido y personalizados con datos que tú proporcionas</strong>. Por esto, conforme a la <strong>Ley N° 19.496</strong> sobre Protección de los Derechos de los Consumidores (artículo 3 bis), <strong>no aplica el derecho a retracto de 10 días</strong> que rige para compras estándar.</p>
+
+      <p>Para minimizar errores, antes de iniciar la producción te enviamos un <strong>boceto digital</strong> para tu aprobación. Solo cuando confirmas el boceto comenzamos a grabar.</p>
+
+      <h2>2. Cancelaciones antes de iniciar la producción</h2>
+      <p>Si necesitas cancelar tu pedido <strong>antes de aprobar el boceto</strong> o antes de que iniciemos la producción, te reembolsamos el 100% del monto pagado dentro de 5 días hábiles.</p>
+
+      <h2>3. Modificaciones</h2>
+      <p>Los cambios en el texto, color o cantidad pueden solicitarse <strong>hasta antes de aprobar el boceto definitivo</strong>. Después de la aprobación, una modificación implica producir nuevamente y puede tener costo adicional.</p>
+
+      <h2>4. Garantía por defectos de fabricación</h2>
+      <p>Si el producto que recibes presenta defectos de fabricación (grabado incompleto, error en el texto respecto al boceto aprobado, problema estructural de la pieza), tienes derecho a:</p>
+      <ul>
+        <li><strong>Reposición</strong> del producto sin costo, en los mismos plazos de producción.</li>
+        <li><strong>Reembolso íntegro</strong>, incluyendo el costo del despacho.</li>
+      </ul>
+      <p>El plazo para reclamar por defectos de fabricación es de <strong>10 días hábiles desde la recepción</strong>, conforme a la Ley 19.496.</p>
+
+      <h2>5. Cómo reclamar</h2>
+      <ol>
+        <li>Toma fotos claras del defecto.</li>
+        <li>Envíanoslas por WhatsApp con el número de pedido o tu nombre.</li>
+        <li>Te respondemos en un máximo de 2 días hábiles con la solución.</li>
+        <li>Si corresponde devolución física del producto, te coordinamos el retiro con el courier (sin costo para ti).</li>
+      </ol>
+
+      <h2>6. Lo que no cubre la garantía</h2>
+      <ul>
+        <li>Errores en el texto que el cliente aprobó en el boceto.</li>
+        <li>Daños posteriores a la entrega por golpes, humedad o uso indebido.</li>
+        <li>Desgaste natural de la madera con el tiempo (cambios sutiles de tono).</li>
+      </ul>
+
+      <h2>7. SERNAC</h2>
+      <p>Si no estás conforme con cómo gestionamos un reclamo, puedes recurrir al <strong>Servicio Nacional del Consumidor (SERNAC)</strong> a través de <a href="https://www.sernac.cl" target="_blank" rel="noopener">sernac.cl</a>.</p>
+
+      <h2>8. Contacto</h2>
+      <p>Reclamos y consultas: WhatsApp <a href="/contacto">+56 9 2644 9047</a> o <a href="mailto:hola@lasercrafts.cl">hola@lasercrafts.cl</a>.</p>
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  .breadcrumb { padding: var(--space-5) 0 var(--space-3); font-size: var(--fs-small); color: var(--color-fieltro); }
+  .breadcrumb a { color: var(--color-fieltro); text-decoration: none; }
+  .breadcrumb span { margin: 0 var(--space-1); }
+  .editorial h1 { font-size: var(--fs-h1); margin: var(--space-3) 0 var(--space-2); }
+  .updated { color: var(--color-fieltro); font-size: var(--fs-small); margin-bottom: var(--space-6); }
+</style>

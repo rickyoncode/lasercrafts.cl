@@ -1,0 +1,91 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { waLink } from "../lib/whatsapp";
+const wa = waLink({ kind: "home" });
+---
+
+<BaseLayout
+  title="Sobre el taller — LáserCrafts"
+  description="Taller pequeño de regalo personalizado en terciado grabado a láser. En el sur de Chile, despacho a todo el país."
+>
+  <div class="container">
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+      <a href="/">Inicio</a> <span>›</span> <span aria-current="page">Sobre</span>
+    </nav>
+
+    <article class="editorial section">
+      <span class="eyebrow">El taller</span>
+      <h1>Una persona. Una máquina. Mucha madera.</h1>
+
+      <p class="lead">
+        LáserCrafts es un taller pequeño en la Región de los Ríos. Lo dirige y
+        opera Felipe — el mismo que recibe los mensajes por WhatsApp, el que
+        graba las piezas, el que las embolsa y las despacha. No es una marca
+        montada sobre un equipo grande: es un taller real, con sus tiempos
+        humanos.
+      </p>
+
+      <h2>Por qué terciado</h2>
+      <p>
+        El terciado es la base de la mayoría de los muebles bonitos que duran. Es
+        firme, no se astilla con el grabado láser, y la veta queda visible
+        cuando se quema. No buscamos imitar otra madera: el terciado se ve como
+        terciado, y eso es parte de lo que hace honesto el resultado.
+      </p>
+
+      <h2>Por qué grabado láser</h2>
+      <p>
+        El láser permite grabar un nombre, una frase o una fecha con una
+        precisión que a mano tomaría horas. El borde queda con el tono caramelo
+        característico de la madera quemada, no impreso. Cuando lo tocas se nota
+        que hay relieve.
+      </p>
+
+      <h2>Por qué desde el sur</h2>
+      <p>
+        Porque acá es donde está el taller. No es una declaración de identidad
+        territorial — es la realidad logística. Despachamos a todo Chile con los
+        couriers principales (Chilexpress, Starken, BlueExpress y Correos de
+        Chile), porque la mayoría de nuestros clientes están en regiones del
+        sur, pero también llegan a Santiago, La Serena y Antofagasta.
+      </p>
+
+      <h2>Cuánto producimos</h2>
+      <p>
+        Alrededor de 50 piezas por semana, todas pasadas por las manos de
+        Felipe. Es la capacidad real de un taller chico. En temporada alta
+        (Día de la Madre, Navidad) cerramos pedidos antes de tiempo cuando se
+        llena la semana — siempre avisamos por WhatsApp y nunca prometemos un
+        plazo que no podamos cumplir.
+      </p>
+
+      <h2>Qué encontrarás aquí</h2>
+      <ul>
+        <li>Regalo personalizado para cumpleaños, matrimonios, nacimientos y fechas estacionales.</li>
+        <li>Decoración para casa y escritorio.</li>
+        <li>Souvenirs y packaging por volumen para emprendedores (esto último por WhatsApp directo, no por catálogo).</li>
+      </ul>
+
+      <p>
+        Si quieres conversar sobre un pedido — o solo preguntar si lo que tienes
+        en mente es posible — escríbenos por WhatsApp.
+      </p>
+
+      <p>
+        <a href={wa} target="_blank" rel="noopener" class="btn btn-primary" data-wa-context="sobre">
+          Escribir por WhatsApp
+        </a>
+      </p>
+    </article>
+  </div>
+</BaseLayout>
+
+<style>
+  .breadcrumb { padding: var(--space-5) 0 var(--space-3); font-size: var(--fs-small); color: var(--color-fieltro); }
+  .breadcrumb a { color: var(--color-fieltro); text-decoration: none; }
+  .breadcrumb a:hover { color: var(--color-profundo); }
+  .breadcrumb span { margin: 0 var(--space-1); }
+  .editorial h1 { font-size: var(--fs-h1); margin: var(--space-3) 0 var(--space-5); }
+  .editorial .lead { font-size: var(--fs-lead); color: var(--color-fieltro); margin-bottom: var(--space-6); }
+  .editorial p { color: var(--color-profundo); }
+</style>

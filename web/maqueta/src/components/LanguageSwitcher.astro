@@ -1,0 +1,81 @@
+---
+import { langs, langShort, langLabel, empresasUrl } from "../i18n/empresas";
+import type { Lang } from "../i18n/empresas";
+
+interface Props {
+  current: Lang;
+  label: string;
+}
+
+const { current, label } = Astro.props;
+---
+
+<nav class="lang-switcher" aria-label={label}>
+  <span class="lang-label" aria-hidden="true">{label}</span>
+  <ul role="list">
+    {
+      langs.map((l) => (
+        <li>
+          <a
+            href={empresasUrl(l)}
+            class:list={["lang-chip", l === current && "is-current"]}
+            aria-current={l === current ? "page" : undefined}
+            hreflang={l}
+            title={langLabel[l]}
+          >
+            {langShort[l]}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+
+<style>
+  .lang-switcher {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-3);
+  }
+  .lang-label {
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--color-fieltro);
+  }
+  .lang-switcher ul {
+    display: inline-flex;
+    gap: 4px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .lang-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 36px;
+    height: 28px;
+    padding: 0 0.5rem;
+    border-radius: 999px;
+    font-family: var(--font-mono);
+    font-size: var(--fs-micro);
+    letter-spacing: 0.14em;
+    text-decoration: none;
+    color: var(--color-profundo);
+    border: 1px solid var(--color-profundo-16);
+    transition:
+      background 0.15s ease,
+      color 0.15s ease,
+      border-color 0.15s ease;
+  }
+  .lang-chip:hover {
+    background: var(--color-profundo-08);
+  }
+  .lang-chip.is-current {
+    background: var(--color-profundo);
+    color: var(--color-papel);
+    border-color: var(--color-profundo);
+  }
+</style>

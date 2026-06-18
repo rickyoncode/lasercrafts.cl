@@ -1,0 +1,12 @@
+---
+import { calcFechaLlegada } from "../data/products";
+
+type Props = { plazoMax: number };
+const { plazoMax } = Astro.props;
+const fecha = calcFechaLlegada(plazoMax);
+---
+
+<span class="plazo">
+  <span class="plazo-dot" aria-hidden="true"></span>
+  Si pides hoy, llega antes del {fecha}
+</span>
