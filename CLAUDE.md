@@ -15,6 +15,7 @@ branding/
   brief.md            # Brand brief — propuesta de valor, audiencias, posicionamiento, no-gos
   buyer-persona.md    # "Camila del Sur" — persona principal + persona secundario
   moodboard.md        # Dirección visual, paleta definitiva, tipografía, registros, aplicaciones
+  voz-de-marca.md     # Tono de voz: brújula, registros, glosario, plantillas operativas
   logos/              # SVGs originales del logo (fill original #ff0000 = placeholder, IGNORAR)
   assets/
     logo-paleta-grovemade.{html,png}  # Logo aplicado a la paleta definitiva v0.3 (Profundo + Nogal + Cobre)
