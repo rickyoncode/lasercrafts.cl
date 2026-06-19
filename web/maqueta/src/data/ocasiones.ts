@@ -16,7 +16,7 @@ export const ocasiones: Ocasion[] = [
     slug: "matrimonios",
     nombre: "Matrimonios",
     descripcion: "Souvenirs, recordatorios y regalos para parejas y testigos.",
-    copyHero: "Souvenirs y recordatorios que no terminan en el cajón de los olvidos."
+    copyHero: "Aunque a caballo regalado no se le miran los dientes. Nuestros souvenirs y recordatorios no pasarán desapercibidos y seran un lindo recuerdo de tus momentos especiales."
   },
   {
     slug: "nacimientos",
