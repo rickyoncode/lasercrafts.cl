@@ -35,7 +35,13 @@ HERO_DIR.mkdir(parents=True, exist_ok=True)
 CLEAN_DIR.mkdir(parents=True, exist_ok=True)
 
 OUT_SIDE = 1100             # lado de la imagen hero final (cuadrada)
-PRODUCT_PCT = 0.74          # % del lado que ocupa el producto (el resto es margen)
+# El "tamaño visual" del producto se mide por su DIAGONAL, no por su
+# dimensión más larga. Así un set de medallas anchas-y-bajas se ve igual
+# de "grande" que un cofre vertical, y la grilla queda uniforme.
+PRODUCT_DIAGONAL_PCT = 0.62  # diagonal objetivo del producto / diagonal del canvas
+# Cap: ningún lado del producto excede este porcentaje del lado del cuadrado.
+# Da el "aire" visible alrededor del producto.
+PRODUCT_MAX_SIDE_PCT = 0.68
 BLUR_PX = 12                # blur del fondo (suaviza detalle)
 DARKEN = 0.78               # multiplicar fondo por (0–1) para oscurecer
 SHADOW_OFFSET = (10, 24)    # px de desplazamiento de la sombra del producto
@@ -132,15 +138,19 @@ def compose_hero(slug: str, photo_name: str) -> bool:
         return False
     prod = cut.crop(bbox)
 
-    # 4. resize producto manteniendo aspecto, al PRODUCT_PCT del lado
+    # 4. resize producto manteniendo aspecto, normalizado por DIAGONAL
+    #    (para que el "tamaño visual" sea constante en la grilla)
     pw, ph = prod.size
-    target = int(OUT_SIDE * PRODUCT_PCT)
-    if pw >= ph:
-        new_pw = target
-        new_ph = int(ph * target / pw)
-    else:
-        new_ph = target
-        new_pw = int(pw * target / ph)
+    import math
+    canvas_diag = math.sqrt(2) * OUT_SIDE
+    target_diag = canvas_diag * PRODUCT_DIAGONAL_PCT
+    cur_diag = math.sqrt(pw * pw + ph * ph)
+    scale = target_diag / cur_diag
+    # Cap: ningún lado del producto puede exceder PRODUCT_MAX_SIDE_PCT del canvas
+    max_side = OUT_SIDE * PRODUCT_MAX_SIDE_PCT
+    scale = min(scale, max_side / max(pw, ph))
+    new_pw = max(1, int(pw * scale))
+    new_ph = max(1, int(ph * scale))
     prod = prod.resize((new_pw, new_ph), Image.LANCZOS)
 
     # 5. preparar sombra (blur del alpha desplazado, opacidad)
