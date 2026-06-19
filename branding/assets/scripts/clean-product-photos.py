@@ -30,9 +30,11 @@ ROOT = Path(__file__).resolve().parents[3]
 FOTOS_DIR = ROOT / "branding/assets/productos/fotos"
 THUMBS_DIR = ROOT / "branding/assets/productos/thumbs"
 SITE_IMG_DIR = ROOT / "web/maqueta/public/img/products/catalogo"
+TRANSPARENT_DIR = SITE_IMG_DIR / "transparent"
 
 THUMBS_DIR.mkdir(parents=True, exist_ok=True)
 SITE_IMG_DIR.mkdir(parents=True, exist_ok=True)
+TRANSPARENT_DIR.mkdir(parents=True, exist_ok=True)
 
 THUMB_W = 280
 LARGE_W = 900
@@ -136,7 +138,15 @@ def process(slug: str, photo_name: str) -> bool:
     save_square(LARGE_W, site_dst, quality=86)
     save_square(THUMB_W, thumb_dst, quality=80)
 
-    print(f"  [OK]   {slug}: producto {prod_w}×{prod_h} → cuadrado {side}px (margen {int(PADDING_PCT*100)}%)")
+    # 7. Versión PNG transparente del producto (sin componer sobre blanco)
+    #    Para usos como carruseles sobre fondos de color.
+    trans_dst = TRANSPARENT_DIR / f"{slug}.png"
+    trans_target_w = LARGE_W
+    ratio = trans_target_w / cut_cropped.width
+    trans_size = (trans_target_w, max(1, int(cut_cropped.height * ratio)))
+    cut_cropped.resize(trans_size, Image.LANCZOS).save(trans_dst, "PNG", optimize=True)
+
+    print(f"  [OK]   {slug}: producto {prod_w}×{prod_h} → cuadrado {side}px + PNG transparente")
     return True
 
 

@@ -1,5 +1,6 @@
 ---
 import { waLink } from "../../lib/whatsapp";
+import { products } from "../../data/products";
 
 interface Props {
   enabled?: boolean;
@@ -10,8 +11,10 @@ interface Props {
   ctaPrimaryHref?: string;
   ctaSecondaryLabel?: string;
   ctaSecondaryHref?: string;
-  bgImage?: string;
-  bgAlt?: string;
+  /** slugs de productos a mostrar en el carrusel (5–7 ideal) */
+  slides?: string[];
+  /** ms por slide */
+  interval?: number;
   align?: "left" | "right";
   minHeight?: string;
 }
@@ -25,16 +28,51 @@ const {
   ctaPrimaryHref = "/productos",
   ctaSecondaryLabel = "Conversemos por WhatsApp",
   ctaSecondaryHref = waLink({ kind: "home" }),
-  bgImage = "/img/hero/grovemade-desk-walnut.jpg",
-  bgAlt = "Setup de escritorio en madera nogal sobre fondo azul profundo.",
+  slides = [
+    "cofre-tapa-hojas",
+    "posavasos-fauna-nativa",
+    "marcapaginas-fauna",
+    "cuadro-3d-pez-betta",
+    "llaveros-fauna-nativa",
+  ],
+  interval = 4500,
   align = "right",
-  minHeight = "560px",
+  minHeight = "620px",
 } = Astro.props;
 
 if (!enabled) return null;
+
+const carouselItems = slides
+  .map((slug) => products.find((p) => p.slug === slug))
+  .filter((p): p is NonNullable<typeof p> => Boolean(p));
 ---
 
-<section class:list={["hero-gm", `hero-gm--${align}`]} style={`--hero-gm-bg: url('${bgImage}'); --hero-gm-min: ${minHeight};`} aria-label={bgAlt}>
+<section class:list={["hero-gm", `hero-gm--${align}`]} style={`--hero-gm-min: ${minHeight};`}>
+  <div class="hero-gm-carousel" data-carousel data-interval={interval}>
+    {carouselItems.map((p, i) => (
+      <a
+        href={`/producto/${p.slug}`}
+        class:list={["hero-gm-slide", i === 0 && "is-active"]}
+        data-slide-index={i}
+        aria-label={`Ver ${p.nombre}`}
+      >
+        <img src={`/img/products/catalogo/transparent/${p.slug}.png`} alt={p.nombre} loading={i === 0 ? "eager" : "lazy"} />
+      </a>
+    ))}
+    <div class="hero-gm-dots" role="tablist" aria-label="Productos destacados">
+      {carouselItems.map((p, i) => (
+        <button
+          type="button"
+          class:list={["hero-gm-dot", i === 0 && "is-active"]}
+          data-dot-index={i}
+          role="tab"
+          aria-label={p.nombre}
+          aria-selected={i === 0}
+        ></button>
+      ))}
+    </div>
+  </div>
+
   <div class="hero-gm-inner container">
     <div class="hero-gm-copy">
       {eyebrow && <span class="eyebrow eyebrow-light">{eyebrow}</span>}
@@ -52,19 +90,119 @@ if (!enabled) return null;
   </div>
 </section>
 
+<script>
+  (function () {
+    const root = document.querySelector<HTMLDivElement>("[data-carousel]");
+    if (!root) return;
+    const slides = root.querySelectorAll<HTMLElement>(".hero-gm-slide");
+    const dots = root.querySelectorAll<HTMLButtonElement>(".hero-gm-dot");
+    const interval = Number(root.dataset.interval || 4500);
+    let idx = 0;
+    let timer: ReturnType<typeof setInterval> | null = null;
+
+    function show(next: number) {
+      idx = (next + slides.length) % slides.length;
+      slides.forEach((el, i) => el.classList.toggle("is-active", i === idx));
+      dots.forEach((el, i) => {
+        el.classList.toggle("is-active", i === idx);
+        el.setAttribute("aria-selected", i === idx ? "true" : "false");
+      });
+    }
+    function start() {
+      stop();
+      timer = setInterval(() => show(idx + 1), interval);
+    }
+    function stop() {
+      if (timer) clearInterval(timer);
+      timer = null;
+    }
+
+    dots.forEach((dot, i) => {
+      dot.addEventListener("click", () => {
+        show(i);
+        start();
+      });
+    });
+    root.addEventListener("mouseenter", stop);
+    root.addEventListener("mouseleave", start);
+    start();
+  })();
+</script>
+
 <style>
   .hero-gm {
-    background-image: var(--hero-gm-bg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    position: relative;
     min-height: var(--hero-gm-min);
     color: var(--color-papel);
+    background:
+      radial-gradient(120% 80% at 80% 30%, #143b76 0%, #0a2547 60%, #06182f 100%);
     display: flex;
     align-items: center;
-    position: relative;
+    overflow: hidden;
   }
+
+  /* Carrusel: alineado a la IZQUIERDA del container (donde está el logo) */
+  .hero-gm-carousel {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+  .hero-gm-slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-left: clamp(1.25rem, 6vw, 6rem);
+    opacity: 0;
+    transition: opacity 0.9s ease;
+    pointer-events: none;
+  }
+  .hero-gm-slide.is-active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .hero-gm-slide img {
+    width: auto;
+    height: 82%;
+    max-height: 520px;
+    max-width: 46%;
+    object-fit: contain;
+    filter: drop-shadow(0 22px 40px rgba(0, 0, 0, 0.55));
+  }
+
+  /* Dots */
+  .hero-gm-dots {
+    position: absolute;
+    bottom: var(--space-5);
+    left: clamp(1.25rem, 6vw, 6rem);
+    display: flex;
+    gap: var(--space-2);
+    z-index: 3;
+  }
+  .hero-gm-dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.2s ease;
+  }
+  .hero-gm-dot.is-active {
+    background: var(--color-papel);
+    transform: scale(1.2);
+  }
+  .hero-gm-dot:focus-visible {
+    outline: 2px solid var(--color-papel);
+    outline-offset: 2px;
+  }
+
+  /* Copy a la derecha (sobre el carrusel) */
   .hero-gm-inner {
+    position: relative;
+    z-index: 2;
     width: 100%;
     display: flex;
     padding-top: var(--space-7);
@@ -80,7 +218,7 @@ if (!enabled) return null;
   .hero-gm--right .hero-gm-copy { text-align: right; }
 
   .hero-gm .eyebrow-light {
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(255, 255, 255, 0.72);
     margin-bottom: var(--space-3);
   }
 
@@ -91,12 +229,14 @@ if (!enabled) return null;
     line-height: 1;
     letter-spacing: -0.02em;
     margin: 0 0 var(--space-3);
+    text-shadow: 0 2px 14px rgba(0, 0, 0, 0.35);
   }
   .hero-gm-subtitle {
-    color: rgba(255, 255, 255, 0.86);
+    color: rgba(255, 255, 255, 0.9);
     font-size: var(--fs-lead);
     line-height: 1.4;
     margin: 0 0 var(--space-5);
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
   }
   .hero-gm-actions {
     display: flex;
@@ -132,11 +272,34 @@ if (!enabled) return null;
     background: rgba(255, 255, 255, 0.1);
   }
 
+  @media (max-width: 900px) {
+    .hero-gm-slide img {
+      max-width: 60%;
+      height: 60%;
+      max-height: 380px;
+    }
+  }
+
   @media (max-width: 720px) {
-    .hero-gm { min-height: 440px; }
-    .hero-gm-inner { justify-content: flex-start !important; padding-top: var(--space-6); padding-bottom: var(--space-6); }
+    .hero-gm { min-height: 620px; }
+    .hero-gm-inner {
+      justify-content: flex-start !important;
+      padding-top: var(--space-6);
+      padding-bottom: var(--space-8);
+      align-items: flex-end;
+    }
     .hero-gm-copy { text-align: left !important; max-width: 28ch; }
     .hero-gm-actions { justify-content: flex-start !important; }
     .hero-gm-title { font-size: clamp(2rem, 9vw, 3rem); }
+    .hero-gm-slide {
+      padding-left: 0;
+      justify-content: center;
+    }
+    .hero-gm-slide img {
+      height: 42%;
+      max-width: 72%;
+      transform: translateY(-18%);
+    }
+    .hero-gm-dots { left: 50%; transform: translateX(-50%); top: 40%; bottom: auto; }
   }
 </style>
