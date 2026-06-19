@@ -48,7 +48,7 @@ const carouselItems = slides
 ---
 
 <section class:list={["hero-gm", `hero-gm--${align}`]} style={`--hero-gm-min: ${minHeight};`}>
-  <div class="hero-gm-carousel" data-carousel data-interval={interval}>
+  <div class="hero-gm-carousel container" data-carousel data-interval={interval}>
     {carouselItems.map((p, i) => (
       <a
         href={`/producto/${p.slug}`}
@@ -141,19 +141,28 @@ const carouselItems = slides
     overflow: hidden;
   }
 
-  /* Carrusel: alineado a la IZQUIERDA del container (donde está el logo) */
+  /* Carrusel: vive dentro del container del sitio (alineado con el logo).
+     Solo el background es full-width — el contenido respeta max-content. */
   .hero-gm-carousel {
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+    width: 100%;
     z-index: 1;
+    pointer-events: none;
   }
   .hero-gm-slide {
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 50%;
+    max-width: 540px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    padding-left: clamp(1.25rem, 6vw, 6rem);
     opacity: 0;
     transition: opacity 0.9s ease;
     pointer-events: none;
@@ -166,7 +175,7 @@ const carouselItems = slides
     width: auto;
     height: 82%;
     max-height: 520px;
-    max-width: 46%;
+    max-width: 100%;
     object-fit: contain;
     filter: drop-shadow(0 22px 40px rgba(0, 0, 0, 0.55));
   }
@@ -175,10 +184,11 @@ const carouselItems = slides
   .hero-gm-dots {
     position: absolute;
     bottom: var(--space-5);
-    left: clamp(1.25rem, 6vw, 6rem);
+    left: 0;
     display: flex;
     gap: var(--space-2);
     z-index: 3;
+    pointer-events: auto;
   }
   .hero-gm-dot {
     width: 8px;
@@ -292,7 +302,8 @@ const carouselItems = slides
     .hero-gm-actions { justify-content: flex-start !important; }
     .hero-gm-title { font-size: clamp(2rem, 9vw, 3rem); }
     .hero-gm-slide {
-      padding-left: 0;
+      width: 100%;
+      max-width: 100%;
       justify-content: center;
     }
     .hero-gm-slide img {
