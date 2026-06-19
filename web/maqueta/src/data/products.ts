@@ -34,7 +34,7 @@ export const products: Product[] = [
       cantidad: { default: 1, min: 1, max: 12 }
     },
     plazoDias: { min: 3, max: 5 },
-    imagen: "/img/products/catalogo/posavasos-valdivia.jpg"
+    imagen: "/img/products/catalogo/hero/posavasos-valdivia.jpg"
   },
   {
     slug: "posavasos-fauna-nativa",
@@ -50,7 +50,7 @@ export const products: Product[] = [
       cantidad: { default: 1, min: 1, max: 12 }
     },
     plazoDias: { min: 4, max: 7 },
-    imagen: "/img/products/catalogo/posavasos-fauna-nativa.jpg"
+    imagen: "/img/products/catalogo/hero/posavasos-fauna-nativa.jpg"
   },
   {
     slug: "set-posavasos-geometricos",
@@ -66,7 +66,7 @@ export const products: Product[] = [
       cantidad: { default: 1, min: 1, max: 5 }
     },
     plazoDias: { min: 5, max: 8 },
-    imagen: "/img/products/catalogo/set-posavasos-geometricos.jpg"
+    imagen: "/img/products/catalogo/hero/set-posavasos-geometricos.jpg"
   },
   {
     slug: "bandeja-portavasos",
@@ -82,7 +82,7 @@ export const products: Product[] = [
       cantidad: { default: 1, min: 1, max: 3 }
     },
     plazoDias: { min: 4, max: 6 },
-    imagen: "/img/products/catalogo/bandeja-portavasos.jpg"
+    imagen: "/img/products/catalogo/hero/bandeja-portavasos.jpg"
   },
   {
     slug: "cofre-tapa-hojas",
@@ -98,7 +98,7 @@ export const products: Product[] = [
       cantidad: { default: 1, min: 1, max: 5 }
     },
     plazoDias: { min: 5, max: 8 },
-    imagen: "/img/products/catalogo/cofre-tapa-hojas.jpg"
+    imagen: "/img/products/catalogo/hero/cofre-tapa-hojas.jpg"
   },
   {
     slug: "cofre-cuadrado-firma",
@@ -114,7 +114,7 @@ export const products: Product[] = [
       cantidad: { default: 1, min: 1, max: 5 }
     },
     plazoDias: { min: 5, max: 7 },
-    imagen: "/img/products/catalogo/cofre-cuadrado-firma.jpg"
+    imagen: "/img/products/catalogo/hero/cofre-cuadrado-firma.jpg"
   },
   {
     slug: "soporte-celular-plegable",
@@ -130,7 +130,7 @@ export const products: Product[] = [
       cantidad: { default: 1, min: 1, max: 10 }
     },
     plazoDias: { min: 3, max: 5 },
-    imagen: "/img/products/catalogo/soporte-celular-plegable.jpg"
+    imagen: "/img/products/catalogo/hero/soporte-celular-plegable.jpg"
   },
   {
     slug: "soporte-celular-engranaje",
@@ -146,7 +146,7 @@ export const products: Product[] = [
       cantidad: { default: 1, min: 1, max: 10 }
     },
     plazoDias: { min: 4, max: 6 },
-    imagen: "/img/products/catalogo/soporte-celular-engranaje.jpg"
+    imagen: "/img/products/catalogo/hero/soporte-celular-engranaje.jpg"
   },
   {
     slug: "pins-imanes-naturaleza",
@@ -162,7 +162,7 @@ export const products: Product[] = [
       cantidad: { default: 1, min: 1, max: 6 }
     },
     plazoDias: { min: 5, max: 8 },
-    imagen: "/img/products/catalogo/pins-imanes-naturaleza.jpg"
+    imagen: "/img/products/catalogo/hero/pins-imanes-naturaleza.jpg"
   },
   {
     slug: "llaveros-fauna-nativa",
@@ -178,7 +178,7 @@ export const products: Product[] = [
       cantidad: { default: 1, min: 1, max: 20 }
     },
     plazoDias: { min: 3, max: 5 },
-    imagen: "/img/products/catalogo/llaveros-fauna-nativa.jpg"
+    imagen: "/img/products/catalogo/hero/llaveros-fauna-nativa.jpg"
   },
   {
     slug: "marcapaginas-fauna",
@@ -194,7 +194,7 @@ export const products: Product[] = [
       cantidad: { default: 1, min: 1, max: 20 }
     },
     plazoDias: { min: 4, max: 6 },
-    imagen: "/img/products/catalogo/marcapaginas-fauna.jpg"
+    imagen: "/img/products/catalogo/hero/marcapaginas-fauna.jpg"
   },
   {
     slug: "cuadro-3d-pez-betta",
@@ -210,7 +210,7 @@ export const products: Product[] = [
       cantidad: { default: 1, min: 1, max: 3 }
     },
     plazoDias: { min: 8, max: 12 },
-    imagen: "/img/products/catalogo/cuadro-3d-pez-betta.jpg"
+    imagen: "/img/products/catalogo/hero/cuadro-3d-pez-betta.jpg"
   },
   {
     slug: "cuadro-3d-manga",
@@ -226,7 +226,7 @@ export const products: Product[] = [
       cantidad: { default: 1, min: 1, max: 2 }
     },
     plazoDias: { min: 12, max: 18 },
-    imagen: "/img/products/catalogo/cuadro-3d-manga.jpg"
+    imagen: "/img/products/catalogo/hero/cuadro-3d-manga.jpg"
   },
   {
     slug: "carta-pokemon-3d",
@@ -242,7 +242,7 @@ export const products: Product[] = [
       cantidad: { default: 1, min: 1, max: 3 }
     },
     plazoDias: { min: 10, max: 15 },
-    imagen: "/img/products/catalogo/carta-pokemon-3d.jpg"
+    imagen: "/img/products/catalogo/hero/carta-pokemon-3d.jpg"
   },
   {
     slug: "medallas-pokemon",
@@ -258,7 +258,7 @@ export const products: Product[] = [
       cantidad: { default: 1, min: 1, max: 5 }
     },
     plazoDias: { min: 7, max: 10 },
-    imagen: "/img/products/catalogo/medallas-pokemon.jpg"
+    imagen: "/img/products/catalogo/hero/medallas-pokemon.jpg"
   },
   {
     slug: "casa-halloween-armable",
@@ -274,7 +274,7 @@ export const products: Product[] = [
       cantidad: { default: 1, min: 1, max: 5 }
     },
     plazoDias: { min: 6, max: 9 },
-    imagen: "/img/products/catalogo/casa-halloween-armable.jpg"
+    imagen: "/img/products/catalogo/hero/casa-halloween-armable.jpg"
   },
   {
     slug: "placa-direccion-escena",
@@ -290,7 +290,7 @@ export const products: Product[] = [
       cantidad: { default: 1, min: 1, max: 2 }
     },
     plazoDias: { min: 10, max: 14 },
-    imagen: "/img/products/catalogo/placa-direccion-escena.jpg"
+    imagen: "/img/products/catalogo/hero/placa-direccion-escena.jpg"
   },
   {
     slug: "letrero-exterior-tienda",
@@ -305,7 +305,7 @@ export const products: Product[] = [
       cantidad: { default: 1, min: 1, max: 2 }
     },
     plazoDias: { min: 14, max: 21 },
-    imagen: "/img/products/catalogo/letrero-exterior-tienda.jpg"
+    imagen: "/img/products/catalogo/hero/letrero-exterior-tienda.jpg"
   },
   {
     slug: "expositor-hot-wheels",
@@ -321,7 +321,7 @@ export const products: Product[] = [
       cantidad: { default: 1, min: 1, max: 3 }
     },
     plazoDias: { min: 10, max: 14 },
-    imagen: "/img/products/catalogo/expositor-hot-wheels.jpg"
+    imagen: "/img/products/catalogo/hero/expositor-hot-wheels.jpg"
   }
 ];
 
