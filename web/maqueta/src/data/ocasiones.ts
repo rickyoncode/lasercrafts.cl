@@ -10,7 +10,7 @@ export const ocasiones: Ocasion[] = [
     slug: "cumpleanos",
     nombre: "Cumpleaños",
     descripcion: "Regalos personalizados para cualquier cumple del año.",
-    copyHero: "Para el cumple que se acordaste tarde, pero igual quieres que quede bien."
+    copyHero: "Queda como rey con un producto Lasercrafts, todos tus regalos tendrán un toque único y con personalidad"
   },
   {
     slug: "matrimonios",
