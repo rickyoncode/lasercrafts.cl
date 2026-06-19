@@ -16,6 +16,8 @@ branding/
   buyer-persona.md    # "Camila del Sur" — persona principal + persona secundario
   moodboard.md        # Dirección visual, paleta definitiva, tipografía, registros, aplicaciones
   voz-de-marca.md     # Tono de voz: brújula, registros, glosario, plantillas operativas
+  catalogo-productos.md  # Catálogo redactado desde fotos del taller (v0.1, pendiente medidas/precios)
+  assets/productos/fotos/  # Fotos crudas del taller (sesiones 28-mar y 31-may 2026)
   logos/              # SVGs originales del logo (fill original #ff0000 = placeholder, IGNORAR)
   assets/
     logo-paleta-grovemade.{html,png}  # Logo aplicado a la paleta definitiva v0.3 (Profundo + Nogal + Cobre)

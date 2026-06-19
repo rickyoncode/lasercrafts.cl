@@ -21,3 +21,7 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+
+# Fotos crudas del taller (697MB, fuente en Drive de Felipe) — el catálogo
+# las referencia por nombre pero los binarios no van al repo
+branding/assets/productos/fotos/
