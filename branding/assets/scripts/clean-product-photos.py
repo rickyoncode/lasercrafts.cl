@@ -36,7 +36,17 @@ SITE_IMG_DIR.mkdir(parents=True, exist_ok=True)
 
 THUMB_W = 280
 LARGE_W = 900
-PADDING_PCT = 0.06  # 6% padding alrededor del bounding box
+PADDING_PCT = 0.18  # 18% margen blanco a cada lado del producto (cuadrado final)
+
+# Slugs que vinieron fotografiados de costado y necesitan rotación
+# (la heurística automática no siempre acierta; estas las forzamos).
+# Valores: grados a rotar en sentido horario (90, 180, 270).
+ROTATE_OVERRIDES = {
+    "cuadro-3d-pez-betta": 0,        # ya viene bien
+    "cuadro-3d-manga": 0,
+    "carta-pokemon-3d": 0,
+    "expositor-hot-wheels": 0,
+}
 
 # --- Slug → primera foto (igual orden que build-catalogo-xlsx.py) ----------
 PHOTO_FOR = {
@@ -95,37 +105,38 @@ def process(slug: str, photo_name: str) -> bool:
     cut_bytes = remove(buf.getvalue(), session=session)
     cut = Image.open(BytesIO(cut_bytes)).convert("RGBA")
 
-    # 3. Recortar al bounding box del alfa
+    # 3. Recortar al bounding box del alfa (sin padding, ajustado al producto)
     bbox = cut.getbbox()
     if bbox is None:
         print(f"  [WARN] {slug}: rembg no detectó producto, usando imagen completa")
         cut_cropped = cut
     else:
-        # padding
-        w, h = cut.size
-        l, t, r, b = bbox
-        pad_w = int((r - l) * PADDING_PCT)
-        pad_h = int((b - t) * PADDING_PCT)
-        l = max(0, l - pad_w)
-        t = max(0, t - pad_h)
-        r = min(w, r + pad_w)
-        b = min(h, b + pad_h)
-        cut_cropped = cut.crop((l, t, r, b))
+        cut_cropped = cut.crop(bbox)
 
-    # 4. Pegar sobre fondo blanco puro
-    bg = Image.new("RGB", cut_cropped.size, (255, 255, 255))
-    bg.paste(cut_cropped, (0, 0), cut_cropped)
+    # 4. Rotación opcional
+    rotate = ROTATE_OVERRIDES.get(slug, 0)
+    if rotate:
+        cut_cropped = cut_cropped.rotate(-rotate, expand=True, resample=Image.BICUBIC)
 
-    # 5. Resize a las dos versiones (LANCZOS)
-    def save_resized(target_w: int, dst: Path, quality: int = 85):
-        ratio = target_w / bg.width
-        new_size = (target_w, int(bg.height * ratio))
-        bg.resize(new_size, Image.LANCZOS).save(dst, "JPEG", quality=quality, optimize=True)
+    # 5. Componer sobre un CUADRADO blanco con margen uniforme
+    prod_w, prod_h = cut_cropped.size
+    longest = max(prod_w, prod_h)
+    side = int(longest * (1 + PADDING_PCT * 2))
+    square = Image.new("RGB", (side, side), (255, 255, 255))
+    offset_x = (side - prod_w) // 2
+    offset_y = (side - prod_h) // 2
+    square.paste(cut_cropped, (offset_x, offset_y), cut_cropped)
 
-    save_resized(LARGE_W, site_dst, quality=85)
-    save_resized(THUMB_W, thumb_dst, quality=80)
+    # 6. Resize a las dos versiones (LANCZOS), siempre cuadradas
+    def save_square(target: int, dst: Path, quality: int = 85):
+        square.resize((target, target), Image.LANCZOS).save(
+            dst, "JPEG", quality=quality, optimize=True
+        )
 
-    print(f"  [OK]   {slug}: {bg.width}×{bg.height} → thumb + site")
+    save_square(LARGE_W, site_dst, quality=86)
+    save_square(THUMB_W, thumb_dst, quality=80)
+
+    print(f"  [OK]   {slug}: producto {prod_w}×{prod_h} → cuadrado {side}px (margen {int(PADDING_PCT*100)}%)")
     return True
 
 
